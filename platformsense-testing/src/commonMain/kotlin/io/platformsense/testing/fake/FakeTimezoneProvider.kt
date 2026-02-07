@@ -1,0 +1,25 @@
+package io.platformsense.testing.fake
+
+import io.platformsense.core.provider.TimezoneProvider
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+
+/**
+ * Fake [TimezoneProvider] for tests. Configure [currentValue] to simulate timezone (e.g. "America/New_York").
+ */
+class FakeTimezoneProvider(
+    initialValue: String = "",
+) : TimezoneProvider {
+
+    private val _state = MutableStateFlow(initialValue)
+    val state: StateFlow<String> = _state.asStateFlow()
+
+    var currentValue: String
+        get() = _state.value
+        set(value) { _state.value = value }
+
+    override fun current(): String = _state.value
+    override fun flow(): Flow<String> = _state
+}

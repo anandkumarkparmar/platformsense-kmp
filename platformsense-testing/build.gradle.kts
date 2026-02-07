@@ -34,6 +34,7 @@ kotlin {
         commonMain.dependencies {
             implementation(project(":platformsense-core"))
             implementation(project(":platformsense-domain"))
+            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1")
         }
         commonTest.dependencies {
             implementation(kotlin("test"))

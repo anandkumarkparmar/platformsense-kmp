@@ -39,10 +39,33 @@ object PlatformSense {
     }
 
     /**
+     * Configures the facade from a [PlatformSenseWiring] supplied by a platform module.
+     * Core does not reference any platform types; the wiring implementation creates
+     * repositories with platform-specific providers.
+     *
+     * @param wiring Platform wiring supplied by the platform module (e.g. Android or iOS).
+     */
+    fun initialize(wiring: PlatformSenseWiring) {
+        initialize(
+            environmentRepository = wiring.environmentRepository(),
+            capabilitiesRepository = wiring.capabilitiesRepository(),
+        )
+    }
+
+    /**
      * Returns whether [initialize] has been called with valid repositories.
      */
     fun isInitialized(): Boolean =
         environmentRepository != null && capabilitiesRepository != null
+
+    /**
+     * Clears the configured repositories. For test teardown only; allows the next test
+     * to call [initialize] with fakes or real wiring. Call in @After or equivalent.
+     */
+    fun resetForTest() {
+        environmentRepository = null
+        capabilitiesRepository = null
+    }
 
     private fun requireEnvironmentRepository(): EnvironmentRepository =
         environmentRepository ?: error(
