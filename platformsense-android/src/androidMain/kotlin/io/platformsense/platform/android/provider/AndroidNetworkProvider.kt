@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.distinctUntilChanged
  * Android implementation of [NetworkProvider] using [ConnectivityManager].
  *
  * Maps active network transport and metered capability to [NetworkType].
- * Uses [ConnectivityManager.getActiveNetwork] and [NetworkCapabilities] on API 23+.
+ * Requires API 23+ (minSdk).
  */
 class AndroidNetworkProvider(private val context: Context) : NetworkProvider {
 
@@ -26,6 +26,7 @@ class AndroidNetworkProvider(private val context: Context) : NetworkProvider {
     override fun current(): NetworkType = mapToNetworkType(connectivityManager.activeNetwork)
 
     override fun flow(): Flow<NetworkType> = callbackFlow {
+        // registerDefaultNetworkCallback requires API 24+
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
             trySend(current())
             close()
@@ -35,6 +36,7 @@ class AndroidNetworkProvider(private val context: Context) : NetworkProvider {
             override fun onCapabilitiesChanged(network: Network, networkCapabilities: NetworkCapabilities,) {
                 trySend(mapToNetworkType(network))
             }
+
             override fun onLost(network: Network) {
                 trySend(mapToNetworkType(connectivityManager.activeNetwork))
             }
@@ -45,7 +47,6 @@ class AndroidNetworkProvider(private val context: Context) : NetworkProvider {
     }.distinctUntilChanged()
 
     private fun mapToNetworkType(network: Network?): NetworkType {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) return NetworkType.UNKNOWN
         if (network == null) return NetworkType.NONE
         val caps = connectivityManager.getNetworkCapabilities(network) ?: return NetworkType.UNKNOWN
         val isMetered = !caps.hasCapability(NetworkCapabilities.NET_CAPABILITY_NOT_METERED)

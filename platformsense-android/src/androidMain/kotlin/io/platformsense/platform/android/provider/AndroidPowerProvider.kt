@@ -17,18 +17,15 @@ import kotlinx.coroutines.flow.distinctUntilChanged
  * Android implementation of [PowerProvider] using [PowerManager] and [BatteryManager].
  *
  * Maps power save mode and charging status to [PowerState].
+ * Requires API 23+ (minSdk).
  */
 class AndroidPowerProvider(private val context: Context) : PowerProvider {
 
     private val powerManager: PowerManager
         get() = context.getSystemService(Context.POWER_SERVICE) as PowerManager
 
-    private val batteryManager: BatteryManager?
-        get() = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            context.getSystemService(Context.BATTERY_SERVICE) as? BatteryManager
-        } else {
-            null
-        }
+    private val batteryManager: BatteryManager
+        get() = context.getSystemService(Context.BATTERY_SERVICE) as BatteryManager
 
     override fun current(): PowerState = mapToPowerState()
 
@@ -42,6 +39,7 @@ class AndroidPowerProvider(private val context: Context) : PowerProvider {
             addAction(PowerManager.ACTION_POWER_SAVE_MODE_CHANGED)
             addAction(Intent.ACTION_BATTERY_CHANGED)
         }
+        // RECEIVER_NOT_EXPORTED flag required for API 33+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             context.registerReceiver(receiver, filter, Context.RECEIVER_NOT_EXPORTED)
         } else {
@@ -52,16 +50,12 @@ class AndroidPowerProvider(private val context: Context) : PowerProvider {
     }.distinctUntilChanged()
 
     private fun mapToPowerState(): PowerState {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) return PowerState.UNKNOWN
         if (powerManager.isPowerSaveMode) return PowerState.LOW_POWER
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            val status = batteryManager?.getIntProperty(BatteryManager.BATTERY_PROPERTY_STATUS)
-                ?: BatteryManager.BATTERY_STATUS_UNKNOWN
-            if (status == BatteryManager.BATTERY_STATUS_CHARGING ||
-                status == BatteryManager.BATTERY_STATUS_FULL
-            ) {
-                return PowerState.CHARGING
-            }
+        val status = batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_STATUS)
+        if (status == BatteryManager.BATTERY_STATUS_CHARGING ||
+            status == BatteryManager.BATTERY_STATUS_FULL
+        ) {
+            return PowerState.CHARGING
         }
         return PowerState.NORMAL
     }
