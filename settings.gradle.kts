@@ -19,5 +19,6 @@ include(
     ":platformsense-core",
     ":platformsense-android",
     ":platformsense-testing",
-    ":platformsense-sample"
+    ":sample:commonApp",
+    ":sample:androidApp",
 )
