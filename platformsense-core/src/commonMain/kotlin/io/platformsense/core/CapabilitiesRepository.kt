@@ -12,18 +12,15 @@ import io.platformsense.domain.CapabilitiesSnapshot
  *
  * The biometric provider is resolved lazily on first use.
  */
-class CapabilitiesRepository(
-    private val biometricProvider: () -> BiometricProvider,
-) {
+class CapabilitiesRepository(private val biometricProvider: () -> BiometricProvider,) {
     private val biometric: BiometricProvider by lazy { biometricProvider() }
 
     /**
      * Returns the current capabilities snapshot by querying all providers.
      */
-    fun current(): CapabilitiesSnapshot =
-        CapabilitiesSnapshot(
-            biometric = biometric.current(),
-            secureHardwareAvailable = false,
-            accessibilityAvailable = false,
-        )
+    fun current(): CapabilitiesSnapshot = CapabilitiesSnapshot(
+        biometric = biometric.current(),
+        secureHardwareAvailable = false,
+        accessibilityAvailable = false,
+    )
 }

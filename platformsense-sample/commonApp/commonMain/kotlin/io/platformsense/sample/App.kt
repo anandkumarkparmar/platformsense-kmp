@@ -54,10 +54,11 @@ fun App() {
             title = "Power-aware UI",
             subtitle = "Reduce animations when device is in power saver mode",
             currentValue = env.powerState.name,
-            suggestion = if (env.powerState == PowerState.LOW_POWER)
+            suggestion = if (env.powerState == PowerState.LOW_POWER) {
                 "Consider disabling or reducing animations"
-            else
-                "Normal power — animations OK",
+            } else {
+                "Normal power — animations OK"
+            },
             isHighlight = env.powerState == PowerState.LOW_POWER,
         )
 
@@ -66,10 +67,11 @@ fun App() {
             title = "Network-adaptive content",
             subtitle = "Reduce image quality on metered network",
             currentValue = env.networkType.name,
-            suggestion = if (env.networkType == NetworkType.METERED)
+            suggestion = if (env.networkType == NetworkType.METERED) {
                 "Use lower resolution or defer heavy downloads"
-            else
-                "Unmetered — full quality OK",
+            } else {
+                "Unmetered — full quality OK"
+            },
             isHighlight = env.networkType == NetworkType.METERED,
         )
 
@@ -78,10 +80,11 @@ fun App() {
             title = "Capability-based feature",
             subtitle = "Show biometric login only if device supports it",
             currentValue = if (caps.biometric.isAvailable) "Available" else "Not available",
-            suggestion = if (caps.biometric.isAvailable)
+            suggestion = if (caps.biometric.isAvailable) {
                 "You can show biometric login"
-            else
-                "Hide or disable biometric option",
+            } else {
+                "Hide or disable biometric option"
+            },
             isHighlight = caps.biometric.isAvailable,
         )
 
@@ -101,7 +104,11 @@ fun App() {
         ) {
             Column(modifier = Modifier.padding(16.dp)) {
                 Text("Device & locale", style = MaterialTheme.typography.titleSmall)
-                Text("Device: ${env.deviceClass} • Locale: ${env.locale.ifEmpty { "—" }} • TZ: ${env.timezone.ifEmpty { "—" }}")
+                Text(
+                    "Device: ${env.deviceClass} • " +
+                        "Locale: ${env.locale.ifEmpty { "—" }} • " +
+                        "TZ: ${env.timezone.ifEmpty { "—" }}"
+                )
             }
         }
     }
@@ -118,10 +125,11 @@ private fun UseCaseCard(
     Card(
         modifier = Modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(
-            containerColor = if (isHighlight)
+            containerColor = if (isHighlight) {
                 MaterialTheme.colorScheme.primaryContainer
-            else
-                MaterialTheme.colorScheme.surfaceVariant,
+            } else {
+                MaterialTheme.colorScheme.surfaceVariant
+            },
         ),
     ) {
         Column(modifier = Modifier.padding(16.dp)) {

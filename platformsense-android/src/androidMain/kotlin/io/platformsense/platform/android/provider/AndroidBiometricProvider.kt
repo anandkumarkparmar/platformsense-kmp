@@ -1,6 +1,7 @@
 package io.platformsense.platform.android.provider
 
 import android.content.Context
+import android.hardware.biometrics.BiometricManager
 import android.os.Build
 import io.platformsense.core.provider.BiometricProvider
 import io.platformsense.domain.BiometricCapability
@@ -12,9 +13,7 @@ import kotlinx.coroutines.flow.flowOf
  *
  * Maps [BiometricManager.canAuthenticate] to [BiometricCapability.isAvailable].
  */
-class AndroidBiometricProvider(
-    private val context: Context,
-) : BiometricProvider {
+class AndroidBiometricProvider(private val context: Context) : BiometricProvider {
 
     override fun current(): BiometricCapability = BiometricCapability(isAvailable = isBiometricAvailable())
 
@@ -22,9 +21,8 @@ class AndroidBiometricProvider(
 
     private fun isBiometricAvailable(): Boolean {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) return false
-        val biometricManager = context.getSystemService(Context.BIOMETRIC_SERVICE) as? android.hardware.biometrics.BiometricManager
-            ?: return false
-        return biometricManager.canAuthenticate(android.hardware.biometrics.BiometricManager.Authenticators.BIOMETRIC_STRONG) ==
-            android.hardware.biometrics.BiometricManager.BIOMETRIC_SUCCESS
+        val biometricManager = context.getSystemService(Context.BIOMETRIC_SERVICE) as? BiometricManager ?: return false
+        return biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG) ==
+            BiometricManager.BIOMETRIC_SUCCESS
     }
 }

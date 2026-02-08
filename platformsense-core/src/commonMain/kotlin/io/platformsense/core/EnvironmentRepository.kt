@@ -61,20 +61,19 @@ class EnvironmentRepository(
      * Emits [EnvironmentSnapshot] whenever any underlying provider emits a new value.
      * Each emission updates the cached snapshot. Emits at least once when collected.
      */
-    fun flow(): Flow<EnvironmentSnapshot> =
-        combine(
-            network.flow(),
-            power.flow(),
-            device.flow(),
-            locale.flow(),
-            timezone.flow(),
-        ) { networkType, powerState, deviceClass, localeValue, timezoneValue ->
-            EnvironmentSnapshot(
-                networkType = networkType,
-                powerState = powerState,
-                deviceClass = deviceClass,
-                locale = localeValue,
-                timezone = timezoneValue,
-            )
-        }.onEach { cachedSnapshot = it }
+    fun flow(): Flow<EnvironmentSnapshot> = combine(
+        network.flow(),
+        power.flow(),
+        device.flow(),
+        locale.flow(),
+        timezone.flow(),
+    ) { networkType, powerState, deviceClass, localeValue, timezoneValue ->
+        EnvironmentSnapshot(
+            networkType = networkType,
+            powerState = powerState,
+            deviceClass = deviceClass,
+            locale = localeValue,
+            timezone = timezoneValue,
+        )
+    }.onEach { cachedSnapshot = it }
 }
