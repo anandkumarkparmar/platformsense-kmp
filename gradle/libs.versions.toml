@@ -1,0 +1,29 @@
+[versions]
+# Library version (for publishing / consistency)
+platformsense = "0.1.0"
+# Kotlin & Compose
+kotlin = "2.1.0"
+compose = "1.7.1"
+# Android
+agp = "8.7.3"
+compileSdk = "34"
+minSdk = "21"
+minSdkSample = "24"
+targetSdk = "34"
+# Dependencies
+coroutines = "1.8.1"
+activityCompose = "1.9.0"
+# JVM
+jvmTarget = "17"
+
+[libraries]
+kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
+kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+
+[plugins]
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+compose = { id = "org.jetbrains.compose", version.ref = "compose" }

@@ -16,9 +16,8 @@ dependencyResolutionManagement {
 }
 
 include(
-    ":platformsense-domain",
     ":platformsense-core",
-    ":platformsense-platform-android",
-    ":platformsense-platform-ios",
-    ":platformsense-testing"
+    ":platformsense-android",
+    ":platformsense-testing",
+    ":platformsense-sample"
 )

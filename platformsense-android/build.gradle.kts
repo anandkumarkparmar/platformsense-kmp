@@ -13,16 +13,15 @@ kotlin {
         }
     }
     sourceSets {
-        commonMain.dependencies {
+        androidMain.dependencies {
             api(project(":platformsense-core"))
-            implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.kotlinx.coroutines.android)
         }
-        commonTest.dependencies { implementation(kotlin("test")) }
     }
 }
 
 android {
-    namespace = "io.platformsense.testing"
+    namespace = "io.platformsense.platform.android"
     compileSdk = libs.versions.compileSdk.get().toInt()
     defaultConfig { minSdk = libs.versions.minSdk.get().toInt() }
     compileOptions {

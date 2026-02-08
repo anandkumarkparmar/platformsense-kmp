@@ -1,53 +1,31 @@
 plugins {
-    kotlin("multiplatform")
-    id("com.android.library")
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.android.library)
+    `maven-publish`
 }
 
-group = "io.platformsense"
+version = libs.versions.platformsense.get()
 
 kotlin {
     androidTarget {
         compilations.all {
-            kotlinOptions {
-                jvmTarget = "17"
-            }
-        }
-    }
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach { iosTarget ->
-        iosTarget.binaries.framework {
-            baseName = "platformsense-core"
-            isStatic = true
-        }
-    }
-    jvm("jvm") {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = "17"
-            }
+            kotlinOptions { jvmTarget = libs.versions.jvmTarget.get() }
         }
     }
     sourceSets {
         commonMain.dependencies {
-            implementation(project(":platformsense-domain"))
-            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1")
+            implementation(libs.kotlinx.coroutines.core)
         }
         commonTest.dependencies {
             implementation(kotlin("test"))
-            implementation(project(":platformsense-domain"))
         }
     }
 }
 
 android {
     namespace = "io.platformsense.core"
-    compileSdk = 34
-    defaultConfig {
-        minSdk = 21
-    }
+    compileSdk = libs.versions.compileSdk.get().toInt()
+    defaultConfig { minSdk = libs.versions.minSdk.get().toInt() }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17

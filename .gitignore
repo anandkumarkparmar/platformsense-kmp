@@ -17,6 +17,7 @@ output.json
 # Kotlin
 *.iml
 out/
+.kotlin/
 
 # IDE
 .idea/
