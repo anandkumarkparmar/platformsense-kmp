@@ -7,7 +7,7 @@ compose = "1.7.1"
 # Android
 agp = "8.7.3"
 compileSdk = "34"
-minSdk = "21"
+minSdk = "23"
 minSdkSample = "24"
 targetSdk = "34"
 # Dependencies

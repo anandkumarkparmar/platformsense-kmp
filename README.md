@@ -142,7 +142,7 @@ class MyTest {
 
 | Platform | Status | Min Version |
 |----------|--------|-------------|
-| Android | Supported | API 21+ |
+| Android | Supported | API 23+ (Android 6.0) |
 | iOS | Coming Soon | - |
 | Desktop | Coming Soon | - |
 
@@ -151,7 +151,7 @@ class MyTest {
 - Kotlin 2.1.0+
 - Gradle 8.10+
 - Java 17+
-- Android: Compile SDK 34, Min SDK 21
+- Android: Compile SDK 34, Min SDK 23
 
 ## License
 
