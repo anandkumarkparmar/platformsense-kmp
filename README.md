@@ -89,9 +89,9 @@ In your module’s `build.gradle.kts`:
 
 ```kotlin
 dependencies {
-    implementation("com.github.Anand-Parmar.platformsense-kmp:platformsense-core:0.1.0")
-    implementation("com.github.Anand-Parmar.platformsense-kmp:platformsense-android:0.1.0")
-    testImplementation("com.github.Anand-Parmar.platformsense-kmp:platformsense-testing:0.1.0")
+    implementation("com.github.anandkumarkparmar.platformsense-kmp:platformsense-core:0.1.0")
+    implementation("com.github.anandkumarkparmar.platformsense-kmp:platformsense-android:0.1.0")
+    testImplementation("com.github.anandkumarkparmar.platformsense-kmp:platformsense-testing:0.1.0")
 }
 ```
 
