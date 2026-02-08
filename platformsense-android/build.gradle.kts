@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.android.library)
@@ -8,8 +10,8 @@ version = libs.versions.platformsense.get()
 
 kotlin {
     androidTarget {
-        compilations.all {
-            kotlinOptions { jvmTarget = libs.versions.jvmTarget.get() }
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_17)
         }
     }
     sourceSets {

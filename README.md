@@ -151,7 +151,7 @@ class MyTest {
 - Kotlin 2.1.0+
 - Gradle 8.10+
 - Java 17+
-- Android: Compile SDK 34, Min SDK 23
+- Android: Compile SDK 36, Target SDK 36, Min SDK 23
 
 ## License
 
