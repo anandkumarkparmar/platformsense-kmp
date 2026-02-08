@@ -5,20 +5,18 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.Build
 import io.platformsense.core.provider.TimezoneProvider
+import java.util.TimeZone
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
-import java.util.TimeZone
 
 /**
  * Android implementation of [TimezoneProvider] using [TimeZone.getDefault].
  *
  * Returns IANA timezone ID. Emits again when the system timezone changes.
  */
-class AndroidTimezoneProvider(
-    private val context: Context,
-) : TimezoneProvider {
+class AndroidTimezoneProvider(private val context: Context) : TimezoneProvider {
 
     override fun current(): String = TimeZone.getDefault().id
 

@@ -10,6 +10,4 @@ package io.platformsense.domain
  * @property isAvailable True if the device supports biometric authentication and it is
  *        enabled/configured; false otherwise.
  */
-data class BiometricCapability(
-    val isAvailable: Boolean = false
-)
+data class BiometricCapability(val isAvailable: Boolean = false)

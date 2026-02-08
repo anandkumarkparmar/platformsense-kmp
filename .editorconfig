@@ -20,6 +20,7 @@ ktlint_code_style = android_studio
 ktlint_standard_no-wildcard-imports = enabled
 ktlint_standard_trailing-comma-on-call-site = disabled
 ktlint_standard_trailing-comma-on-declaration-site = disabled
+ktlint_function_naming_ignore_when_annotated_with = Composable
 
 [*.{xml,yml,yaml}]
 indent_size = 2

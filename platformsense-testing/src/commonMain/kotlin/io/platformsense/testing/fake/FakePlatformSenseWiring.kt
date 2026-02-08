@@ -30,17 +30,15 @@ class FakePlatformSenseWiring(
     val biometric: FakeBiometricProvider = FakeBiometricProvider(),
 ) : PlatformSenseWiring {
 
-    override fun environmentRepository(): EnvironmentRepository =
-        EnvironmentRepository(
-            networkProvider = { network },
-            powerProvider = { power },
-            deviceProvider = { device },
-            localeProvider = { locale },
-            timezoneProvider = { timezone },
-        )
+    override fun environmentRepository(): EnvironmentRepository = EnvironmentRepository(
+        networkProvider = { network },
+        powerProvider = { power },
+        deviceProvider = { device },
+        localeProvider = { locale },
+        timezoneProvider = { timezone },
+    )
 
-    override fun capabilitiesRepository(): CapabilitiesRepository =
-        CapabilitiesRepository(
-            biometricProvider = { biometric },
-        )
+    override fun capabilitiesRepository(): CapabilitiesRepository = CapabilitiesRepository(
+        biometricProvider = { biometric },
+    )
 }

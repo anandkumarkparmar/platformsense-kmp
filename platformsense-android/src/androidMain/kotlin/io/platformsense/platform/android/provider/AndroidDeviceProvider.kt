@@ -2,7 +2,6 @@ package io.platformsense.platform.android.provider
 
 import android.content.Context
 import android.content.res.Configuration
-import android.os.Build
 import io.platformsense.core.provider.DeviceProvider
 import io.platformsense.domain.DeviceClass
 import kotlinx.coroutines.channels.awaitClose
@@ -16,9 +15,7 @@ import kotlinx.coroutines.flow.distinctUntilChanged
  * Maps screen size (smallestScreenWidthDp) and UI mode to [DeviceClass].
  * Phone &lt; 600dp, Tablet ≥ 600dp, TV via UI_MODE_TYPE_TELEVISION.
  */
-class AndroidDeviceProvider(
-    private val context: Context,
-) : DeviceProvider {
+class AndroidDeviceProvider(private val context: Context) : DeviceProvider {
 
     override fun current(): DeviceClass = mapToDeviceClass(context.resources.configuration)
 
@@ -27,6 +24,7 @@ class AndroidDeviceProvider(
             override fun onConfigurationChanged(newConfig: Configuration) {
                 trySend(mapToDeviceClass(newConfig))
             }
+
             override fun onLowMemory() {}
             override fun onTrimMemory(level: Int) {}
         }

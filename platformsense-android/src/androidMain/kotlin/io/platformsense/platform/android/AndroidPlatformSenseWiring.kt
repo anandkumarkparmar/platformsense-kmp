@@ -23,21 +23,17 @@ import io.platformsense.platform.android.provider.AndroidTimezoneProvider
  *
  * @param context Application or Activity context (held for provider lifetime).
  */
-class AndroidPlatformSenseWiring(
-    private val context: Context,
-) : PlatformSenseWiring {
+class AndroidPlatformSenseWiring(private val context: Context) : PlatformSenseWiring {
 
-    override fun environmentRepository(): EnvironmentRepository =
-        EnvironmentRepository(
-            networkProvider = { AndroidNetworkProvider(context) },
-            powerProvider = { AndroidPowerProvider(context) },
-            deviceProvider = { AndroidDeviceProvider(context) },
-            localeProvider = { AndroidLocaleProvider(context) },
-            timezoneProvider = { AndroidTimezoneProvider(context) },
-        )
+    override fun environmentRepository(): EnvironmentRepository = EnvironmentRepository(
+        networkProvider = { AndroidNetworkProvider(context) },
+        powerProvider = { AndroidPowerProvider(context) },
+        deviceProvider = { AndroidDeviceProvider(context) },
+        localeProvider = { AndroidLocaleProvider(context) },
+        timezoneProvider = { AndroidTimezoneProvider(context) },
+    )
 
-    override fun capabilitiesRepository(): CapabilitiesRepository =
-        CapabilitiesRepository(
-            biometricProvider = { AndroidBiometricProvider(context) },
-        )
+    override fun capabilitiesRepository(): CapabilitiesRepository = CapabilitiesRepository(
+        biometricProvider = { AndroidBiometricProvider(context) },
+    )
 }

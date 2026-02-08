@@ -30,10 +30,7 @@ object PlatformSense {
      * @param environmentRepository Repository that provides environment snapshot and flow.
      * @param capabilitiesRepository Repository that provides capabilities snapshot.
      */
-    fun initialize(
-        environmentRepository: EnvironmentRepository,
-        capabilitiesRepository: CapabilitiesRepository,
-    ) {
+    fun initialize(environmentRepository: EnvironmentRepository, capabilitiesRepository: CapabilitiesRepository,) {
         this.environmentRepository = environmentRepository
         this.capabilitiesRepository = capabilitiesRepository
     }
@@ -55,8 +52,7 @@ object PlatformSense {
     /**
      * Returns whether [initialize] has been called with valid repositories.
      */
-    fun isInitialized(): Boolean =
-        environmentRepository != null && capabilitiesRepository != null
+    fun isInitialized(): Boolean = environmentRepository != null && capabilitiesRepository != null
 
     /**
      * Clears the configured repositories. For test teardown only; allows the next test
@@ -67,24 +63,21 @@ object PlatformSense {
         capabilitiesRepository = null
     }
 
-    private fun requireEnvironmentRepository(): EnvironmentRepository =
-        environmentRepository ?: error(
-            "PlatformSense is not initialized. Call PlatformSense.initialize() with " +
-                "EnvironmentRepository and CapabilitiesRepository before use."
-        )
+    private fun requireEnvironmentRepository(): EnvironmentRepository = environmentRepository ?: error(
+        "PlatformSense is not initialized. Call PlatformSense.initialize() with " +
+            "EnvironmentRepository and CapabilitiesRepository before use."
+    )
 
-    private fun requireCapabilitiesRepository(): CapabilitiesRepository =
-        capabilitiesRepository ?: error(
-            "PlatformSense is not initialized. Call PlatformSense.initialize() with " +
-                "EnvironmentRepository and CapabilitiesRepository before use."
-        )
+    private fun requireCapabilitiesRepository(): CapabilitiesRepository = capabilitiesRepository ?: error(
+        "PlatformSense is not initialized. Call PlatformSense.initialize() with " +
+            "EnvironmentRepository and CapabilitiesRepository before use."
+    )
 
     /**
      * Returns the current environment snapshot (network, power, device, locale, timezone).
      * Delegates to [EnvironmentRepository.current].
      */
-    fun environment(): EnvironmentSnapshot =
-        requireEnvironmentRepository().current()
+    fun environment(): EnvironmentSnapshot = requireEnvironmentRepository().current()
 
     /**
      * Flow of environment snapshots that emits whenever any environment signal changes.
@@ -97,6 +90,5 @@ object PlatformSense {
      * Returns the current capabilities snapshot (biometric, secure hardware, accessibility).
      * Delegates to [CapabilitiesRepository.current].
      */
-    fun capabilities(): CapabilitiesSnapshot =
-        requireCapabilitiesRepository().current()
+    fun capabilities(): CapabilitiesSnapshot = requireCapabilitiesRepository().current()
 }

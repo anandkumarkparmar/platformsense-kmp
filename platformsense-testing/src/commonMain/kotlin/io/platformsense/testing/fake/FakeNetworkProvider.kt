@@ -10,16 +10,16 @@ import kotlinx.coroutines.flow.asStateFlow
 /**
  * Fake [NetworkProvider] for tests. Configure [currentValue] to simulate network state.
  */
-class FakeNetworkProvider(
-    initialValue: NetworkType = NetworkType.UNKNOWN,
-) : NetworkProvider {
+class FakeNetworkProvider(initialValue: NetworkType = NetworkType.UNKNOWN) : NetworkProvider {
 
     private val _state = MutableStateFlow(initialValue)
     val state: StateFlow<NetworkType> = _state.asStateFlow()
 
     var currentValue: NetworkType
         get() = _state.value
-        set(value) { _state.value = value }
+        set(value) {
+            _state.value = value
+        }
 
     override fun current(): NetworkType = _state.value
     override fun flow(): Flow<NetworkType> = _state
