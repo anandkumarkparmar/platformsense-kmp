@@ -13,6 +13,18 @@ kotlin {
             jvmTarget.set(JvmTarget.JVM_17)
         }
     }
+
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64(),
+    ).forEach { target ->
+        target.binaries.framework {
+            baseName = "commonApp"
+            isStatic = true
+        }
+    }
+
     sourceSets {
         commonMain.dependencies {
             implementation(project(":platformsense-core"))
@@ -24,6 +36,12 @@ kotlin {
             implementation(compose.ui)
             implementation(libs.kotlinx.coroutines.core)
         }
+        androidMain.dependencies {
+            implementation(project(":platformsense-android"))
+        }
+        iosMain.dependencies {
+            implementation(project(":platformsense-ios"))
+        }
         commonTest.dependencies {
             implementation(kotlin("test"))
         }
@@ -31,7 +49,7 @@ kotlin {
 }
 
 android {
-    namespace = "io.platformsense.sample.common"
+    namespace = "io.github.anandkumarkparmar.platformsense.sample.common"
     compileSdk = libs.versions.compileSdk.get().toInt()
     defaultConfig {
         minSdk = libs.versions.minSdkSample.get().toInt()

@@ -23,7 +23,7 @@ kotlin {
 }
 
 android {
-    namespace = "io.platformsense.platform.android"
+    namespace = "io.github.anandkumarkparmar.platformsense.platform.android"
     compileSdk = libs.versions.compileSdk.get().toInt()
     defaultConfig { minSdk = libs.versions.minSdk.get().toInt() }
     compileOptions {

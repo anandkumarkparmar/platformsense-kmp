@@ -10,7 +10,7 @@ plugins {
 }
 
 allprojects {
-    group = "io.platformsense"
+    group = "io.github.anandkumarkparmar"
 }
 
 subprojects {
@@ -30,6 +30,10 @@ subprojects {
         buildUponDefaultConfig = true
         config.setFrom(files("${rootProject.projectDir}/config/detekt/detekt.yml"))
         parallel = true
+    }
+
+    tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
+        jvmTarget = "17"
     }
 }
 

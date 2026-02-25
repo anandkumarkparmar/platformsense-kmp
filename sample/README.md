@@ -1,8 +1,8 @@
 # PlatformSense Sample
 
-Sample Android app demonstrating PlatformSense library usage. It is part of the main project and uses the library via project dependencies.
+Sample app (Android + iOS) demonstrating PlatformSense library usage. Uses the library via project dependencies.
 
-## Run
+## Run — Android
 
 From the repository root:
 
@@ -10,7 +10,25 @@ From the repository root:
 ./gradlew :sample:androidApp:installDebug
 ```
 
-## Build
+## Run — iOS
+
+1. Build the shared framework first:
+
+```bash
+./gradlew :sample:commonApp:assembleDebugXCFramework
+# or for the simulator:
+./gradlew :sample:commonApp:iosSimulatorArm64Binaries
+```
+
+2. Open the Xcode project:
+
+```bash
+open sample/iosApp/iosApp.xcodeproj
+```
+
+3. Select an iPhone Simulator and press **Run** (⌘R).
+
+## Build (all modules)
 
 From the repository root:
 
@@ -22,8 +40,9 @@ This builds the library modules and the sample. Lint (ktlint, detekt) runs on al
 
 ## Architecture
 
-- `commonApp/` – KMP + Compose Multiplatform shared UI
+- `commonApp/` – KMP + Compose Multiplatform shared UI (targets Android + iOS)
 - `androidApp/` – Android application entry point
+- `iosApp/` – iOS application entry point (Xcode project)
 
 ## Features Demonstrated
 

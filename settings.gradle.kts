@@ -18,6 +18,7 @@ dependencyResolutionManagement {
 include(
     ":platformsense-core",
     ":platformsense-android",
+    ":platformsense-ios",
     ":platformsense-testing",
     ":sample:commonApp",
     ":sample:androidApp",
