@@ -24,6 +24,7 @@ out/
 *.ipr
 *.iws
 .nb-gradle/
+.vscode/
 
 # macOS
 .DS_Store
@@ -65,4 +66,7 @@ coverage/
 *.orig
 
 # Custom Folders
-/docs
+
+# Claude Code (AI assistant) generated files — not for version control
+/.claude/
+/CLAUDE.md

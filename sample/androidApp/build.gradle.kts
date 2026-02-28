@@ -14,10 +14,10 @@ kotlin {
 }
 
 android {
-    namespace = "io.platformsense.sample"
+    namespace = "io.github.anandkumarkparmar.platformsense.sample"
     compileSdk = libs.versions.compileSdk.get().toInt()
     defaultConfig {
-        applicationId = "io.platformsense.sample"
+        applicationId = "io.github.anandkumarkparmar.platformsense.sample"
         minSdk = libs.versions.minSdkSample.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = 1
@@ -28,6 +28,9 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
     buildFeatures.compose = true
+    lint {
+        checkReleaseBuilds = false
+    }
 }
 
 dependencies {
