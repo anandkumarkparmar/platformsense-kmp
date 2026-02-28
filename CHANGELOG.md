@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [0.1.0] — 2026-02-24
+## [v0.1.0] — 2026-02-28
 
 ### Added
 
@@ -53,4 +53,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `secureHardwareAvailable` and `accessibilityAvailable` in `CapabilitiesSnapshot` always return `false` — providers for these signals are planned for a future release
 - Desktop and Web platforms are not yet supported
 
-[0.1.0]: https://github.com/anandkumarkparmar/platformsense-kmp/releases/tag/0.1.0
+[v0.1.0]: https://github.com/anandkumarkparmar/platformsense-kmp/releases/tag/v0.1.0
