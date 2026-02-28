@@ -24,6 +24,7 @@ out/
 *.ipr
 *.iws
 .nb-gradle/
+.vscode/
 
 # macOS
 .DS_Store
