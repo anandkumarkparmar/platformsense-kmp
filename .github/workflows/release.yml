@@ -1,21 +1,244 @@
-name: Release
+name: Release Prep
 
 on:
   push:
     tags:
-      - 'v*'
+      - '[0-9]*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to validate (e.g. 1.0.0 — no v prefix)'
+        required: false
 
 jobs:
-  release:
-    name: Create GitHub Release
+  release-prep:
+    runs-on: macos-latest
+    name: Validate Tag + Build + Draft Notes
+    outputs:
+      tag: ${{ steps.tag.outputs.tag }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: gradle
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Cache Kotlin/Native toolchain
+        uses: actions/cache@v4
+        with:
+          path: ~/.konan
+          key: konan-${{ runner.os }}-${{ hashFiles('gradle/libs.versions.toml') }}
+          restore-keys: konan-${{ runner.os }}-
+
+      - name: Resolve tag
+        id: tag
+        run: |
+          if [ "${GITHUB_EVENT_NAME}" = "workflow_dispatch" ] && [ -n "${{ github.event.inputs.tag }}" ]; then
+            TAG="${{ github.event.inputs.tag }}"
+          else
+            TAG="${GITHUB_REF#refs/tags/}"
+          fi
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          echo "Using tag: $TAG"
+
+      - name: Validate release version format
+        run: |
+          TAG="${{ steps.tag.outputs.tag }}"
+          if [[ ! "$TAG" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Invalid tag format: $TAG"
+            echo "Use format x.y.z (no 'v' prefix)"
+            exit 1
+          fi
+
+      - name: Validate JitPack publication task
+        run: |
+          ./gradlew :platformsense-core:clean \
+                    :platformsense-android:clean \
+                    :platformsense-ios:clean \
+                    :platformsense-testing:clean \
+                    :platformsense-core:publishToMavenLocal \
+                    :platformsense-android:publishToMavenLocal \
+                    :platformsense-ios:publishToMavenLocal \
+                    :platformsense-testing:publishToMavenLocal \
+                    --stacktrace --max-workers=2
+        env:
+          GRADLE_OPTS: "-Xmx6g -XX:MaxMetaspaceSize=1g"
+
+      - name: API compatibility check
+        run: ./gradlew apiCheck --stacktrace
+
+      - name: Detekt static analysis
+        run: ./gradlew detekt --stacktrace
+
+      - name: ktlint check
+        run: ./gradlew ktlintCheck --stacktrace
+
+      - name: Generate artifact size matrix
+        env:
+          MAX_TOTAL_PUBLISHED_BYTES: 5242880
+        run: |
+          chmod +x scripts/report-artifact-sizes.sh
+          ./scripts/report-artifact-sizes.sh --enforce
+
+      - name: Publish artifact size summary
+        run: cat .github/artifact-size-report.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload artifact size report
+        uses: actions/upload-artifact@v4
+        with:
+          name: artifact-size-report-${{ steps.tag.outputs.tag }}
+          path: |
+            .github/artifact-size-report.md
+            .github/artifact-size-summary.env
+            .github/badges/core-published-size.json
+            .github/badges/android-published-size.json
+            .github/badges/ios-published-size.json
+            .github/badges/testing-published-size.json
+            .github/badges/total-published-size.json
+
+      - name: Build all modules
+        run: ./gradlew build --stacktrace --max-workers=2
+        env:
+          GRADLE_OPTS: "-Xmx6g -XX:MaxMetaspaceSize=1g"
+
+      - name: Generate release notes artifact
+        run: |
+          TAG="${{ steps.tag.outputs.tag }}"
+          source .github/artifact-size-summary.env
+          {
+            echo "# platformsense-kmp ${TAG}"
+            echo
+            echo "## Size Snapshot"
+            echo "- Core published: ${CORE_PUBLISHED_BYTES} bytes (${CORE_PUBLISHED_KB} KB)"
+            echo "- Android published: ${ANDROID_PUBLISHED_BYTES} bytes (${ANDROID_PUBLISHED_KB} KB)"
+            echo "- iOS published: ${IOS_PUBLISHED_BYTES} bytes (${IOS_PUBLISHED_KB} KB)"
+            echo "- Testing published: ${TESTING_PUBLISHED_BYTES} bytes (${TESTING_PUBLISHED_KB} KB)"
+            echo "- Total published artifacts: ${TOTAL_PUBLISHED_BYTES} bytes (${TOTAL_PUBLISHED_KB} KB)"
+          } > release_notes.md
+
+      - name: Upload release notes
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-notes-${{ steps.tag.outputs.tag }}
+          path: release_notes.md
+
+  # Publish API docs to GitHub Pages — runs only after release-prep succeeds.
+  # Docs are tied to the release tag so they always match the published version.
+  # Prerequisite (one-time): enable GitHub Pages in repo Settings > Pages > Source: GitHub Actions.
+  publish-docs:
+    needs: release-prep
+    runs-on: macos-latest
+    name: Publish Dokka API Docs
+
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: gradle
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Cache Kotlin/Native toolchain
+        uses: actions/cache@v4
+        with:
+          path: ~/.konan
+          key: konan-${{ runner.os }}-${{ hashFiles('gradle/libs.versions.toml') }}
+          restore-keys: konan-${{ runner.os }}-
+
+      - name: Generate Dokka HTML
+        run: |
+          ./gradlew :platformsense-core:dokkaGenerateModuleHtml \
+                    :platformsense-android:dokkaGenerateModuleHtml \
+                    :platformsense-testing:dokkaGenerateModuleHtml \
+                    --no-daemon --stacktrace --max-workers=2
+        env:
+          GRADLE_OPTS: "-Xmx6g -XX:MaxMetaspaceSize=1g"
+
+      - name: Stage Pages artifact
+        run: |
+          mkdir -p build/pages
+          cp -r platformsense-core/build/dokka-module/html/. build/pages/core/
+          cp -r platformsense-android/build/dokka-module/html/. build/pages/android/ || true
+          cp -r platformsense-testing/build/dokka-module/html/. build/pages/testing/ || true
+          TAG="${{ needs.release-prep.outputs.tag }}"
+          cat > build/pages/index.html <<EOF
+          <!DOCTYPE html>
+          <html>
+          <head><meta charset="utf-8"><title>PlatformSense KMP ${TAG} API Docs</title></head>
+          <body>
+            <h1>PlatformSense KMP ${TAG}</h1>
+            <ul>
+              <li><a href="core/">platformsense-core</a></li>
+              <li><a href="android/">platformsense-android</a></li>
+              <li><a href="testing/">platformsense-testing</a></li>
+            </ul>
+          </body>
+          </html>
+          EOF
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: build/pages
+
+      - name: Deploy to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v4
+
+      - name: Print docs URL
+        run: |
+          echo "API docs published to: ${{ steps.deploy.outputs.page_url }}" \
+            >> "$GITHUB_STEP_SUMMARY"
+
+  # Create GitHub Release — runs after release-prep succeeds.
+  create-github-release:
+    needs: release-prep
     runs-on: ubuntu-latest
+    name: Create GitHub Release
+
     permissions:
       contents: write
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - name: Download release notes
+        uses: actions/download-artifact@v4
+        with:
+          name: release-notes-${{ needs.release-prep.outputs.tag }}
+
+      - name: Download artifact size report
+        uses: actions/download-artifact@v4
+        with:
+          name: artifact-size-report-${{ needs.release-prep.outputs.tag }}
+          path: size-report
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ needs.release-prep.outputs.tag }}
+          name: ${{ needs.release-prep.outputs.tag }}
+          body_path: release_notes.md
           generate_release_notes: true
+          files: |
+            size-report/artifact-size-report.md

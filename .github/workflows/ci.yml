@@ -1,0 +1,383 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - 'assets/**'
+      - 'LICENSE'
+      - '.gitignore'
+  workflow_dispatch:
+    inputs:
+      full_build:
+        description: 'Run full build including iOS'
+        required: false
+        default: false
+        type: boolean
+
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # Detect what changed to optimize builds
+  changes:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.draft == false || github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    outputs:
+      library: ${{ steps.filter.outputs.library }}
+      samples: ${{ steps.filter.outputs.samples }}
+      android: ${{ steps.filter.outputs.android }}
+      ios: ${{ steps.filter.outputs.ios }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            library:
+              - 'platformsense-core/src/**'
+              - 'platformsense-core/api/**'
+              - 'platformsense-core/build.gradle.kts'
+              - 'platformsense-android/src/**'
+              - 'platformsense-android/api/**'
+              - 'platformsense-android/build.gradle.kts'
+              - 'platformsense-ios/src/**'
+              - 'platformsense-ios/api/**'
+              - 'platformsense-ios/build.gradle.kts'
+              - 'platformsense-testing/src/**'
+              - 'platformsense-testing/api/**'
+              - 'platformsense-testing/build.gradle.kts'
+              - 'settings.gradle.kts'
+              - 'gradle/**'
+              - 'jitpack.yml'
+              - '.github/workflows/ci.yml'
+            samples:
+              - 'sample/**'
+            android:
+              - 'platformsense-core/src/**'
+              - 'platformsense-android/src/**'
+              - 'platformsense-testing/src/**'
+              - 'sample/androidApp/**'
+              - 'sample/commonApp/**'
+            ios:
+              - 'platformsense-core/src/**'
+              - 'platformsense-ios/src/**'
+              - 'platformsense-testing/src/**'
+              - 'sample/commonApp/**'
+
+  # Quick validation - always runs first
+  validate:
+    needs: changes
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: gradle
+
+      - name: Validate Gradle Wrapper
+        uses: gradle/wrapper-validation-action@v3
+        continue-on-error: true
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          cache-read-only: ${{ github.ref != 'refs/heads/main' }}
+
+      - name: API compatibility check
+        run: ./gradlew apiCheck --no-daemon --stacktrace
+        env:
+          GRADLE_OPTS: "-Xmx4g -XX:MaxMetaspaceSize=512m"
+
+      - name: Run ktlint
+        run: ./gradlew ktlintCheck --continue --no-daemon
+        env:
+          GRADLE_OPTS: "-Xmx4g -XX:MaxMetaspaceSize=512m"
+
+      - name: Run detekt
+        run: ./gradlew detekt --continue --no-daemon
+        env:
+          GRADLE_OPTS: "-Xmx4g -XX:MaxMetaspaceSize=512m"
+
+      - name: Upload ktlint SARIF report
+        if: always()
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: '**/build/reports/ktlint/**/*.sarif'
+          category: ktlint
+        continue-on-error: true
+
+      - name: Upload detekt SARIF report
+        if: always()
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: '**/build/reports/detekt/**/*.sarif'
+          category: detekt
+        continue-on-error: true
+
+  # Android Library Build
+  library-android:
+    needs: [changes, validate]
+    if: |
+      needs.changes.outputs.library == 'true' &&
+      needs.changes.outputs.android == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: gradle
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Build Android Libraries
+        run: |
+          ./gradlew :platformsense-core:assemble \
+                    :platformsense-android:assemble \
+                    :platformsense-testing:assemble \
+                    --no-daemon --stacktrace
+        env:
+          GRADLE_OPTS: "-Xmx4g -XX:MaxMetaspaceSize=512m"
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: library-android-test-results
+          path: '**/build/reports/tests/'
+          retention-days: 7
+
+  # iOS Library Build (expensive - only when needed)
+  library-ios:
+    needs: [changes, validate]
+    if: |
+      needs.changes.outputs.library == 'true' &&
+      needs.changes.outputs.ios == 'true' &&
+      (github.event_name == 'push' ||
+       inputs.full_build == true ||
+       contains(github.event.pull_request.labels.*.name, 'ready-to-merge'))
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: gradle
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Cache Kotlin/Native toolchain
+        uses: actions/cache@v4
+        with:
+          path: ~/.konan
+          key: konan-${{ runner.os }}-${{ hashFiles('gradle/libs.versions.toml') }}
+          restore-keys: konan-${{ runner.os }}-
+
+      - name: Build iOS Frameworks
+        run: |
+          ./gradlew :platformsense-ios:build \
+                    --no-daemon --stacktrace --max-workers=2
+        env:
+          GRADLE_OPTS: "-Xmx6g -XX:MaxMetaspaceSize=1g"
+
+      - name: Run iOS tests
+        run: |
+          ./gradlew :platformsense-core:iosSimulatorArm64Test \
+                    :platformsense-testing:iosSimulatorArm64Test \
+                    --no-daemon --stacktrace --max-workers=2
+        env:
+          GRADLE_OPTS: "-Xmx6g"
+
+  # Android Sample App
+  sample-android:
+    needs: [changes, validate, library-android]
+    if: |
+      always() &&
+      needs.validate.result == 'success' &&
+      needs.changes.outputs.samples == 'true' &&
+      needs.changes.outputs.android == 'true' &&
+      (needs.library-android.result == 'success' || needs.library-android.result == 'skipped')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: gradle
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Build Android Sample App
+        run: |
+          ./gradlew :sample:androidApp:assembleDebug \
+                    --no-daemon --stacktrace
+        env:
+          GRADLE_OPTS: "-Xmx4g"
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: sample-android-debug-apk
+          path: sample/androidApp/build/outputs/apk/debug/*.apk
+          retention-days: 7
+
+  # JitPack Compatibility Check
+  jitpack-check:
+    needs: [changes, validate, library-android]
+    if: |
+      always() &&
+      needs.changes.outputs.library == 'true' &&
+      (github.event_name == 'push' ||
+       inputs.full_build == true ||
+       contains(github.event.pull_request.labels.*.name, 'ready-to-merge')) &&
+      (needs.library-android.result == 'success' || needs.library-android.result == 'skipped')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: gradle
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Validate JitPack publication task
+        run: |
+          ./gradlew :platformsense-core:publishToMavenLocal \
+                    :platformsense-android:publishToMavenLocal \
+                    :platformsense-testing:publishToMavenLocal \
+                    --no-daemon --stacktrace
+        env:
+          GRADLE_OPTS: "-Xmx4g"
+
+      - name: Verify Maven publication
+        run: |
+          if [ -d "$HOME/.m2/repository/io/github/anandkumarkparmar" ]; then
+            echo "Maven publication successful"
+            find $HOME/.m2/repository/io/github/anandkumarkparmar -name "*.aar" -o -name "*.jar" -o -name "*.pom" | head -20
+          else
+            echo "Maven publication failed - artifacts not found"
+            exit 1
+          fi
+
+      - name: Generate artifact size report
+        env:
+          MAX_TOTAL_PUBLISHED_BYTES: 5242880
+        run: |
+          if [ -f "scripts/report-artifact-sizes.sh" ]; then
+            chmod +x scripts/report-artifact-sizes.sh
+            ./scripts/report-artifact-sizes.sh --enforce || echo "Artifact size check failed"
+          fi
+
+      - name: Publish artifact size summary
+        run: |
+          if [ -f ".github/artifact-size-report.md" ]; then
+            cat .github/artifact-size-report.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upload artifact size report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: artifact-size-report
+          path: |
+            .github/artifact-size-report.md
+            .github/artifact-size-summary.env
+          retention-days: 30
+        continue-on-error: true
+
+  # Build Summary
+  build-summary:
+    needs:
+      - changes
+      - validate
+      - library-android
+      - library-ios
+      - sample-android
+      - jitpack-check
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate Build Summary
+        run: |
+          echo "## CI Build Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          echo "**Event**: \`${{ github.event_name }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "**Branch**: \`${{ github.ref_name }}\`" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ github.event_name }}" == "pull_request" ]; then
+            echo "**PR**: #${{ github.event.pull_request.number }}" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          echo "### Changed Components" >> $GITHUB_STEP_SUMMARY
+          echo "- Library: ${{ needs.changes.outputs.library }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Samples: ${{ needs.changes.outputs.samples }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Android: ${{ needs.changes.outputs.android }}" >> $GITHUB_STEP_SUMMARY
+          echo "- iOS: ${{ needs.changes.outputs.ios }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          echo "### Build Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Component | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|-----------|--------|" >> $GITHUB_STEP_SUMMARY
+
+          format_status() {
+            case "$1" in
+              "success") echo "Success" ;;
+              "failure") echo "Failed" ;;
+              "skipped") echo "Skipped" ;;
+              "cancelled") echo "Cancelled" ;;
+              *) echo "$1" ;;
+            esac
+          }
+
+          echo "| Validation | $(format_status "${{ needs.validate.result }}") |" >> $GITHUB_STEP_SUMMARY
+          echo "| Library Android | $(format_status "${{ needs.library-android.result }}") |" >> $GITHUB_STEP_SUMMARY
+          echo "| Library iOS | $(format_status "${{ needs.library-ios.result }}") |" >> $GITHUB_STEP_SUMMARY
+          echo "| Sample Android | $(format_status "${{ needs.sample-android.result }}") |" >> $GITHUB_STEP_SUMMARY
+          echo "| JitPack Check | $(format_status "${{ needs.jitpack-check.result }}") |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [ "${{ needs.validate.result }}" == "failure" ] || \
+             [ "${{ needs.library-android.result }}" == "failure" ] || \
+             [ "${{ needs.library-ios.result }}" == "failure" ] || \
+             [ "${{ needs.sample-android.result }}" == "failure" ] || \
+             [ "${{ needs.jitpack-check.result }}" == "failure" ]; then
+            echo "### Build Failed" >> $GITHUB_STEP_SUMMARY
+            echo "One or more jobs failed. Check the logs above for details." >> $GITHUB_STEP_SUMMARY
+            exit 1
+          else
+            echo "### Build Successful" >> $GITHUB_STEP_SUMMARY
+            echo "All required checks passed!" >> $GITHUB_STEP_SUMMARY
+          fi
