@@ -1,16 +1,16 @@
 package io.github.anandkumarkparmar.platformsense.testing
 
-import io.github.anandkumarkparmar.platformsense.core.models.capability.BiometricInfo
-import io.github.anandkumarkparmar.platformsense.core.models.capability.BiometricStatus
-import io.github.anandkumarkparmar.platformsense.core.models.capability.BiometricType
-import io.github.anandkumarkparmar.platformsense.core.models.environment.DeviceClass
-import io.github.anandkumarkparmar.platformsense.core.models.environment.DeviceInfo
-import io.github.anandkumarkparmar.platformsense.core.models.environment.LocaleInfo
-import io.github.anandkumarkparmar.platformsense.core.models.environment.NetworkInfo
-import io.github.anandkumarkparmar.platformsense.core.models.environment.NetworkType
-import io.github.anandkumarkparmar.platformsense.core.models.environment.PowerInfo
-import io.github.anandkumarkparmar.platformsense.core.models.environment.PowerState
-import io.github.anandkumarkparmar.platformsense.core.models.environment.TimezoneInfo
+import io.github.anandkumarkparmar.platformsense.core.models.device.BiometricInfo
+import io.github.anandkumarkparmar.platformsense.core.models.device.BiometricStatus
+import io.github.anandkumarkparmar.platformsense.core.models.device.BiometricType
+import io.github.anandkumarkparmar.platformsense.core.models.device.DeviceClass
+import io.github.anandkumarkparmar.platformsense.core.models.device.DeviceInfo
+import io.github.anandkumarkparmar.platformsense.core.models.state.LocaleInfo
+import io.github.anandkumarkparmar.platformsense.core.models.state.NetworkInfo
+import io.github.anandkumarkparmar.platformsense.core.models.state.NetworkType
+import io.github.anandkumarkparmar.platformsense.core.models.state.PowerInfo
+import io.github.anandkumarkparmar.platformsense.core.models.state.PowerState
+import io.github.anandkumarkparmar.platformsense.core.models.state.TimezoneInfo
 import io.github.anandkumarkparmar.platformsense.testing.fake.FakeBiometricProvider
 import io.github.anandkumarkparmar.platformsense.testing.fake.FakeDeviceProvider
 import io.github.anandkumarkparmar.platformsense.testing.fake.FakeLocaleProvider

@@ -1,6 +1,6 @@
 package io.github.anandkumarkparmar.platformsense.testing.fake
 
-import io.github.anandkumarkparmar.platformsense.core.models.environment.NetworkInfo
+import io.github.anandkumarkparmar.platformsense.core.models.state.NetworkInfo
 import io.github.anandkumarkparmar.platformsense.core.provider.NetworkProvider
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow

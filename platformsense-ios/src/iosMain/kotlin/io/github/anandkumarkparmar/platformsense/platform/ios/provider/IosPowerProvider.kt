@@ -1,8 +1,8 @@
 package io.github.anandkumarkparmar.platformsense.platform.ios.provider
 
-import io.github.anandkumarkparmar.platformsense.core.models.environment.PowerInfo
-import io.github.anandkumarkparmar.platformsense.core.models.environment.PowerState
-import io.github.anandkumarkparmar.platformsense.core.models.environment.ThermalState
+import io.github.anandkumarkparmar.platformsense.core.models.state.PowerInfo
+import io.github.anandkumarkparmar.platformsense.core.models.state.PowerState
+import io.github.anandkumarkparmar.platformsense.core.models.state.ThermalState
 import io.github.anandkumarkparmar.platformsense.core.provider.PowerProvider
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow

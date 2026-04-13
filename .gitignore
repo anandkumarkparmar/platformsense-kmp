@@ -26,6 +26,9 @@ out/
 .nb-gradle/
 .vscode/
 
+# Xcode user data
+xcuserdata/
+
 # macOS
 .DS_Store
 .AppleDouble

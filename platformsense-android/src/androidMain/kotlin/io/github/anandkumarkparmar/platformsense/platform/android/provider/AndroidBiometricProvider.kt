@@ -3,9 +3,9 @@ package io.github.anandkumarkparmar.platformsense.platform.android.provider
 import android.content.Context
 import android.hardware.biometrics.BiometricManager
 import android.os.Build
-import io.github.anandkumarkparmar.platformsense.core.models.capability.BiometricInfo
-import io.github.anandkumarkparmar.platformsense.core.models.capability.BiometricStatus
-import io.github.anandkumarkparmar.platformsense.core.models.capability.BiometricType
+import io.github.anandkumarkparmar.platformsense.core.models.device.BiometricInfo
+import io.github.anandkumarkparmar.platformsense.core.models.device.BiometricStatus
+import io.github.anandkumarkparmar.platformsense.core.models.device.BiometricType
 import io.github.anandkumarkparmar.platformsense.core.provider.BiometricProvider
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf

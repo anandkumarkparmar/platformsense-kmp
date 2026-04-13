@@ -1,6 +1,6 @@
 package io.github.anandkumarkparmar.platformsense.testing.fake
 
-import io.github.anandkumarkparmar.platformsense.core.models.environment.DeviceInfo
+import io.github.anandkumarkparmar.platformsense.core.models.device.DeviceInfo
 import io.github.anandkumarkparmar.platformsense.core.provider.DeviceProvider
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow

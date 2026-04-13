@@ -1,6 +1,6 @@
 package io.github.anandkumarkparmar.platformsense.core.provider
 
-import io.github.anandkumarkparmar.platformsense.core.models.environment.DeviceInfo
+import io.github.anandkumarkparmar.platformsense.core.models.device.DeviceInfo
 import kotlinx.coroutines.flow.Flow
 
 /**

@@ -1,6 +1,6 @@
 package io.github.anandkumarkparmar.platformsense.core.provider
 
-import io.github.anandkumarkparmar.platformsense.core.models.environment.NetworkInfo
+import io.github.anandkumarkparmar.platformsense.core.models.state.NetworkInfo
 import kotlinx.coroutines.flow.Flow
 
 /**

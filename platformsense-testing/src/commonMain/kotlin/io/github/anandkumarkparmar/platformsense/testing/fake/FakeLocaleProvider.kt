@@ -1,6 +1,6 @@
 package io.github.anandkumarkparmar.platformsense.testing.fake
 
-import io.github.anandkumarkparmar.platformsense.core.models.environment.LocaleInfo
+import io.github.anandkumarkparmar.platformsense.core.models.state.LocaleInfo
 import io.github.anandkumarkparmar.platformsense.core.provider.LocaleProvider
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow

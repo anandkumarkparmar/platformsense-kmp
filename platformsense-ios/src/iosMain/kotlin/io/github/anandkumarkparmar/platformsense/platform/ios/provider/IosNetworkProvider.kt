@@ -1,7 +1,7 @@
 package io.github.anandkumarkparmar.platformsense.platform.ios.provider
 
-import io.github.anandkumarkparmar.platformsense.core.models.environment.NetworkInfo
-import io.github.anandkumarkparmar.platformsense.core.models.environment.NetworkType
+import io.github.anandkumarkparmar.platformsense.core.models.state.NetworkInfo
+import io.github.anandkumarkparmar.platformsense.core.models.state.NetworkType
 import io.github.anandkumarkparmar.platformsense.core.provider.NetworkProvider
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow

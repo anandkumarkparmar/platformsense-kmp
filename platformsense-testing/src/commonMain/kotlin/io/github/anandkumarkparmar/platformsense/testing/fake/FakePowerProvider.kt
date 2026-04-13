@@ -1,6 +1,6 @@
 package io.github.anandkumarkparmar.platformsense.testing.fake
 
-import io.github.anandkumarkparmar.platformsense.core.models.environment.PowerInfo
+import io.github.anandkumarkparmar.platformsense.core.models.state.PowerInfo
 import io.github.anandkumarkparmar.platformsense.core.provider.PowerProvider
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
