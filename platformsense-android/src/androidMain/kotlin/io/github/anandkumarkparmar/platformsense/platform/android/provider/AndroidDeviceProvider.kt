@@ -17,7 +17,7 @@ import kotlinx.coroutines.flow.distinctUntilChanged
  * Maps screen size (smallestScreenWidthDp) and UI mode to [DeviceClass].
  * Phone &lt; 600dp, Tablet ≥ 600dp, TV via UI_MODE_TYPE_TELEVISION.
  */
-class AndroidDeviceProvider(private val context: Context) : DeviceProvider {
+internal class AndroidDeviceProvider(private val context: Context) : DeviceProvider {
 
     override fun current(): DeviceInfo = mapToDeviceInfo(context.resources.configuration)
 

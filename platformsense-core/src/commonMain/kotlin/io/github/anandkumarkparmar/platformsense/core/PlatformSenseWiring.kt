@@ -23,37 +23,37 @@ import io.github.anandkumarkparmar.platformsense.core.provider.TimezoneProvider
  *
  * Each method returns a provider that is resolved lazily by the facade on first access.
  */
-interface PlatformSenseWiring {
+public interface PlatformSenseWiring {
 
     // -- State providers (reactive — values change at runtime) --
 
-    fun networkProvider(): NetworkProvider
+    public fun networkProvider(): NetworkProvider
 
-    fun powerProvider(): PowerProvider
+    public fun powerProvider(): PowerProvider
 
-    fun localeProvider(): LocaleProvider
+    public fun localeProvider(): LocaleProvider
 
-    fun timezoneProvider(): TimezoneProvider
+    public fun timezoneProvider(): TimezoneProvider
 
-    fun appearanceProvider(): AppearanceProvider
+    public fun appearanceProvider(): AppearanceProvider
 
-    fun displayProvider(): DisplayProvider
+    public fun displayProvider(): DisplayProvider
 
-    fun accessibilityProvider(): AccessibilityProvider
+    public fun accessibilityProvider(): AccessibilityProvider
 
-    fun memoryProvider(): MemoryProvider
+    public fun memoryProvider(): MemoryProvider
 
     // -- Device providers (static — values rarely change) --
 
-    fun deviceProvider(): DeviceProvider
+    public fun deviceProvider(): DeviceProvider
 
-    fun biometricProvider(): BiometricProvider
+    public fun biometricProvider(): BiometricProvider
 
-    fun hardwareCapabilitiesProvider(): HardwareCapabilitiesProvider
+    public fun hardwareCapabilitiesProvider(): HardwareCapabilitiesProvider
 
-    fun storageProvider(): StorageProvider
+    public fun storageProvider(): StorageProvider
 
-    fun systemInfoProvider(): SystemInfoProvider
+    public fun systemInfoProvider(): SystemInfoProvider
 
-    fun appInfoProvider(): AppInfoProvider
+    public fun appInfoProvider(): AppInfoProvider
 }

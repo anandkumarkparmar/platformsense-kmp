@@ -9,17 +9,17 @@ import kotlinx.coroutines.flow.Flow
  * Implementations are platform-specific. Use [current] for one-off checks and [flow]
  * for UI that reacts to orientation or display configuration changes.
  */
-interface DisplayProvider {
+public interface DisplayProvider {
 
     /**
      * Returns the current display info at the time of the call.
      */
-    fun current(): DisplayInfo
+    public fun current(): DisplayInfo
 
     /**
      * Emits the current display info and then whenever it changes
      * (e.g. orientation change, display connection).
      * Implementations should emit at least once and then on each change.
      */
-    fun flow(): Flow<DisplayInfo>
+    public fun flow(): Flow<DisplayInfo>
 }

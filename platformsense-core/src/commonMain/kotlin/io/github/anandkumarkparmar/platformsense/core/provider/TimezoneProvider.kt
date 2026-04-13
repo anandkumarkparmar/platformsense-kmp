@@ -10,16 +10,16 @@ import kotlinx.coroutines.flow.Flow
  * domain models only. Use [current] for one-off checks
  * and [flow] for UI that reacts to timezone changes.
  */
-interface TimezoneProvider {
+public interface TimezoneProvider {
 
     /**
      * Returns the current timezone info at the time of the call.
      */
-    fun current(): TimezoneInfo
+    public fun current(): TimezoneInfo
 
     /**
      * Emits the current timezone info and then whenever it changes.
      * Implementations should emit at least once and then on each change.
      */
-    fun flow(): Flow<TimezoneInfo>
+    public fun flow(): Flow<TimezoneInfo>
 }

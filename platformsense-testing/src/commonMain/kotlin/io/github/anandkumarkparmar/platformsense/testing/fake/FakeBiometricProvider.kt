@@ -10,12 +10,12 @@ import kotlinx.coroutines.flow.asStateFlow
 /**
  * Fake [BiometricProvider] for tests. Configure [currentValue] to simulate biometric availability.
  */
-class FakeBiometricProvider(initialValue: BiometricInfo = BiometricInfo()) : BiometricProvider {
+public class FakeBiometricProvider(initialValue: BiometricInfo = BiometricInfo()) : BiometricProvider {
 
     private val _state = MutableStateFlow(initialValue)
-    val state: StateFlow<BiometricInfo> = _state.asStateFlow()
+    public val state: StateFlow<BiometricInfo> = _state.asStateFlow()
 
-    var currentValue: BiometricInfo
+    public var currentValue: BiometricInfo
         get() = _state.value
         set(value) {
             _state.value = value

@@ -1,0 +1,195 @@
+public final class io/github/anandkumarkparmar/platformsense/testing/PlatformSenseTestRule {
+	public fun <init> ()V
+	public final fun getWiring ()Lio/github/anandkumarkparmar/platformsense/testing/fake/FakePlatformSenseWiring;
+	public final fun install ()V
+	public final fun uninstall ()V
+}
+
+public final class io/github/anandkumarkparmar/platformsense/testing/fake/FakeAccessibilityProvider : io/github/anandkumarkparmar/platformsense/core/provider/AccessibilityProvider {
+	public fun <init> ()V
+	public fun <init> (Lio/github/anandkumarkparmar/platformsense/core/models/state/AccessibilityInfo;)V
+	public synthetic fun <init> (Lio/github/anandkumarkparmar/platformsense/core/models/state/AccessibilityInfo;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun current ()Lio/github/anandkumarkparmar/platformsense/core/models/state/AccessibilityInfo;
+	public fun flow ()Lkotlinx/coroutines/flow/Flow;
+	public final fun getCurrentValue ()Lio/github/anandkumarkparmar/platformsense/core/models/state/AccessibilityInfo;
+	public final fun getState ()Lkotlinx/coroutines/flow/StateFlow;
+	public final fun setCurrentValue (Lio/github/anandkumarkparmar/platformsense/core/models/state/AccessibilityInfo;)V
+}
+
+public final class io/github/anandkumarkparmar/platformsense/testing/fake/FakeAppInfoProvider : io/github/anandkumarkparmar/platformsense/core/provider/AppInfoProvider {
+	public fun <init> ()V
+	public fun <init> (Lio/github/anandkumarkparmar/platformsense/core/models/device/AppInfo;)V
+	public synthetic fun <init> (Lio/github/anandkumarkparmar/platformsense/core/models/device/AppInfo;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun current ()Lio/github/anandkumarkparmar/platformsense/core/models/device/AppInfo;
+	public fun flow ()Lkotlinx/coroutines/flow/Flow;
+	public final fun getCurrentValue ()Lio/github/anandkumarkparmar/platformsense/core/models/device/AppInfo;
+	public final fun getState ()Lkotlinx/coroutines/flow/StateFlow;
+	public final fun setCurrentValue (Lio/github/anandkumarkparmar/platformsense/core/models/device/AppInfo;)V
+}
+
+public final class io/github/anandkumarkparmar/platformsense/testing/fake/FakeAppearanceProvider : io/github/anandkumarkparmar/platformsense/core/provider/AppearanceProvider {
+	public fun <init> ()V
+	public fun <init> (Lio/github/anandkumarkparmar/platformsense/core/models/state/AppearanceInfo;)V
+	public synthetic fun <init> (Lio/github/anandkumarkparmar/platformsense/core/models/state/AppearanceInfo;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun current ()Lio/github/anandkumarkparmar/platformsense/core/models/state/AppearanceInfo;
+	public fun flow ()Lkotlinx/coroutines/flow/Flow;
+	public final fun getCurrentValue ()Lio/github/anandkumarkparmar/platformsense/core/models/state/AppearanceInfo;
+	public final fun getState ()Lkotlinx/coroutines/flow/StateFlow;
+	public final fun setCurrentValue (Lio/github/anandkumarkparmar/platformsense/core/models/state/AppearanceInfo;)V
+}
+
+public final class io/github/anandkumarkparmar/platformsense/testing/fake/FakeBiometricProvider : io/github/anandkumarkparmar/platformsense/core/provider/BiometricProvider {
+	public fun <init> ()V
+	public fun <init> (Lio/github/anandkumarkparmar/platformsense/core/models/device/BiometricInfo;)V
+	public synthetic fun <init> (Lio/github/anandkumarkparmar/platformsense/core/models/device/BiometricInfo;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun current ()Lio/github/anandkumarkparmar/platformsense/core/models/device/BiometricInfo;
+	public fun flow ()Lkotlinx/coroutines/flow/Flow;
+	public final fun getCurrentValue ()Lio/github/anandkumarkparmar/platformsense/core/models/device/BiometricInfo;
+	public final fun getState ()Lkotlinx/coroutines/flow/StateFlow;
+	public final fun setCurrentValue (Lio/github/anandkumarkparmar/platformsense/core/models/device/BiometricInfo;)V
+}
+
+public final class io/github/anandkumarkparmar/platformsense/testing/fake/FakeDeviceProvider : io/github/anandkumarkparmar/platformsense/core/provider/DeviceProvider {
+	public fun <init> ()V
+	public fun <init> (Lio/github/anandkumarkparmar/platformsense/core/models/device/DeviceInfo;)V
+	public synthetic fun <init> (Lio/github/anandkumarkparmar/platformsense/core/models/device/DeviceInfo;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun current ()Lio/github/anandkumarkparmar/platformsense/core/models/device/DeviceInfo;
+	public fun flow ()Lkotlinx/coroutines/flow/Flow;
+	public final fun getCurrentValue ()Lio/github/anandkumarkparmar/platformsense/core/models/device/DeviceInfo;
+	public final fun getState ()Lkotlinx/coroutines/flow/StateFlow;
+	public final fun setCurrentValue (Lio/github/anandkumarkparmar/platformsense/core/models/device/DeviceInfo;)V
+}
+
+public final class io/github/anandkumarkparmar/platformsense/testing/fake/FakeDisplayProvider : io/github/anandkumarkparmar/platformsense/core/provider/DisplayProvider {
+	public fun <init> ()V
+	public fun <init> (Lio/github/anandkumarkparmar/platformsense/core/models/state/DisplayInfo;)V
+	public synthetic fun <init> (Lio/github/anandkumarkparmar/platformsense/core/models/state/DisplayInfo;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun current ()Lio/github/anandkumarkparmar/platformsense/core/models/state/DisplayInfo;
+	public fun flow ()Lkotlinx/coroutines/flow/Flow;
+	public final fun getCurrentValue ()Lio/github/anandkumarkparmar/platformsense/core/models/state/DisplayInfo;
+	public final fun getState ()Lkotlinx/coroutines/flow/StateFlow;
+	public final fun setCurrentValue (Lio/github/anandkumarkparmar/platformsense/core/models/state/DisplayInfo;)V
+}
+
+public final class io/github/anandkumarkparmar/platformsense/testing/fake/FakeHardwareCapabilitiesProvider : io/github/anandkumarkparmar/platformsense/core/provider/HardwareCapabilitiesProvider {
+	public fun <init> ()V
+	public fun <init> (Lio/github/anandkumarkparmar/platformsense/core/models/device/HardwareCapabilities;)V
+	public synthetic fun <init> (Lio/github/anandkumarkparmar/platformsense/core/models/device/HardwareCapabilities;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun current ()Lio/github/anandkumarkparmar/platformsense/core/models/device/HardwareCapabilities;
+	public fun flow ()Lkotlinx/coroutines/flow/Flow;
+	public final fun getCurrentValue ()Lio/github/anandkumarkparmar/platformsense/core/models/device/HardwareCapabilities;
+	public final fun getState ()Lkotlinx/coroutines/flow/StateFlow;
+	public final fun setCurrentValue (Lio/github/anandkumarkparmar/platformsense/core/models/device/HardwareCapabilities;)V
+}
+
+public final class io/github/anandkumarkparmar/platformsense/testing/fake/FakeLocaleProvider : io/github/anandkumarkparmar/platformsense/core/provider/LocaleProvider {
+	public fun <init> ()V
+	public fun <init> (Lio/github/anandkumarkparmar/platformsense/core/models/state/LocaleInfo;)V
+	public synthetic fun <init> (Lio/github/anandkumarkparmar/platformsense/core/models/state/LocaleInfo;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun current ()Lio/github/anandkumarkparmar/platformsense/core/models/state/LocaleInfo;
+	public fun flow ()Lkotlinx/coroutines/flow/Flow;
+	public final fun getCurrentValue ()Lio/github/anandkumarkparmar/platformsense/core/models/state/LocaleInfo;
+	public final fun getState ()Lkotlinx/coroutines/flow/StateFlow;
+	public final fun setCurrentValue (Lio/github/anandkumarkparmar/platformsense/core/models/state/LocaleInfo;)V
+}
+
+public final class io/github/anandkumarkparmar/platformsense/testing/fake/FakeMemoryProvider : io/github/anandkumarkparmar/platformsense/core/provider/MemoryProvider {
+	public fun <init> ()V
+	public fun <init> (Lio/github/anandkumarkparmar/platformsense/core/models/state/MemoryInfo;)V
+	public synthetic fun <init> (Lio/github/anandkumarkparmar/platformsense/core/models/state/MemoryInfo;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun current ()Lio/github/anandkumarkparmar/platformsense/core/models/state/MemoryInfo;
+	public fun flow ()Lkotlinx/coroutines/flow/Flow;
+	public final fun getCurrentValue ()Lio/github/anandkumarkparmar/platformsense/core/models/state/MemoryInfo;
+	public final fun getState ()Lkotlinx/coroutines/flow/StateFlow;
+	public final fun setCurrentValue (Lio/github/anandkumarkparmar/platformsense/core/models/state/MemoryInfo;)V
+}
+
+public final class io/github/anandkumarkparmar/platformsense/testing/fake/FakeNetworkProvider : io/github/anandkumarkparmar/platformsense/core/provider/NetworkProvider {
+	public fun <init> ()V
+	public fun <init> (Lio/github/anandkumarkparmar/platformsense/core/models/state/NetworkInfo;)V
+	public synthetic fun <init> (Lio/github/anandkumarkparmar/platformsense/core/models/state/NetworkInfo;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun current ()Lio/github/anandkumarkparmar/platformsense/core/models/state/NetworkInfo;
+	public fun flow ()Lkotlinx/coroutines/flow/Flow;
+	public final fun getCurrentValue ()Lio/github/anandkumarkparmar/platformsense/core/models/state/NetworkInfo;
+	public final fun getState ()Lkotlinx/coroutines/flow/StateFlow;
+	public final fun setCurrentValue (Lio/github/anandkumarkparmar/platformsense/core/models/state/NetworkInfo;)V
+}
+
+public final class io/github/anandkumarkparmar/platformsense/testing/fake/FakePlatformSenseWiring : io/github/anandkumarkparmar/platformsense/core/PlatformSenseWiring {
+	public fun <init> ()V
+	public fun <init> (Lio/github/anandkumarkparmar/platformsense/testing/fake/FakeNetworkProvider;Lio/github/anandkumarkparmar/platformsense/testing/fake/FakePowerProvider;Lio/github/anandkumarkparmar/platformsense/testing/fake/FakeLocaleProvider;Lio/github/anandkumarkparmar/platformsense/testing/fake/FakeTimezoneProvider;Lio/github/anandkumarkparmar/platformsense/testing/fake/FakeAppearanceProvider;Lio/github/anandkumarkparmar/platformsense/testing/fake/FakeDisplayProvider;Lio/github/anandkumarkparmar/platformsense/testing/fake/FakeAccessibilityProvider;Lio/github/anandkumarkparmar/platformsense/testing/fake/FakeMemoryProvider;Lio/github/anandkumarkparmar/platformsense/testing/fake/FakeDeviceProvider;Lio/github/anandkumarkparmar/platformsense/testing/fake/FakeBiometricProvider;Lio/github/anandkumarkparmar/platformsense/testing/fake/FakeHardwareCapabilitiesProvider;Lio/github/anandkumarkparmar/platformsense/testing/fake/FakeStorageProvider;Lio/github/anandkumarkparmar/platformsense/testing/fake/FakeSystemInfoProvider;Lio/github/anandkumarkparmar/platformsense/testing/fake/FakeAppInfoProvider;)V
+	public synthetic fun <init> (Lio/github/anandkumarkparmar/platformsense/testing/fake/FakeNetworkProvider;Lio/github/anandkumarkparmar/platformsense/testing/fake/FakePowerProvider;Lio/github/anandkumarkparmar/platformsense/testing/fake/FakeLocaleProvider;Lio/github/anandkumarkparmar/platformsense/testing/fake/FakeTimezoneProvider;Lio/github/anandkumarkparmar/platformsense/testing/fake/FakeAppearanceProvider;Lio/github/anandkumarkparmar/platformsense/testing/fake/FakeDisplayProvider;Lio/github/anandkumarkparmar/platformsense/testing/fake/FakeAccessibilityProvider;Lio/github/anandkumarkparmar/platformsense/testing/fake/FakeMemoryProvider;Lio/github/anandkumarkparmar/platformsense/testing/fake/FakeDeviceProvider;Lio/github/anandkumarkparmar/platformsense/testing/fake/FakeBiometricProvider;Lio/github/anandkumarkparmar/platformsense/testing/fake/FakeHardwareCapabilitiesProvider;Lio/github/anandkumarkparmar/platformsense/testing/fake/FakeStorageProvider;Lio/github/anandkumarkparmar/platformsense/testing/fake/FakeSystemInfoProvider;Lio/github/anandkumarkparmar/platformsense/testing/fake/FakeAppInfoProvider;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun accessibilityProvider ()Lio/github/anandkumarkparmar/platformsense/core/provider/AccessibilityProvider;
+	public fun appInfoProvider ()Lio/github/anandkumarkparmar/platformsense/core/provider/AppInfoProvider;
+	public fun appearanceProvider ()Lio/github/anandkumarkparmar/platformsense/core/provider/AppearanceProvider;
+	public fun biometricProvider ()Lio/github/anandkumarkparmar/platformsense/core/provider/BiometricProvider;
+	public fun deviceProvider ()Lio/github/anandkumarkparmar/platformsense/core/provider/DeviceProvider;
+	public fun displayProvider ()Lio/github/anandkumarkparmar/platformsense/core/provider/DisplayProvider;
+	public final fun getAccessibility ()Lio/github/anandkumarkparmar/platformsense/testing/fake/FakeAccessibilityProvider;
+	public final fun getAppInfo ()Lio/github/anandkumarkparmar/platformsense/testing/fake/FakeAppInfoProvider;
+	public final fun getAppearance ()Lio/github/anandkumarkparmar/platformsense/testing/fake/FakeAppearanceProvider;
+	public final fun getBiometric ()Lio/github/anandkumarkparmar/platformsense/testing/fake/FakeBiometricProvider;
+	public final fun getDevice ()Lio/github/anandkumarkparmar/platformsense/testing/fake/FakeDeviceProvider;
+	public final fun getDisplay ()Lio/github/anandkumarkparmar/platformsense/testing/fake/FakeDisplayProvider;
+	public final fun getHardware ()Lio/github/anandkumarkparmar/platformsense/testing/fake/FakeHardwareCapabilitiesProvider;
+	public final fun getLocale ()Lio/github/anandkumarkparmar/platformsense/testing/fake/FakeLocaleProvider;
+	public final fun getMemory ()Lio/github/anandkumarkparmar/platformsense/testing/fake/FakeMemoryProvider;
+	public final fun getNetwork ()Lio/github/anandkumarkparmar/platformsense/testing/fake/FakeNetworkProvider;
+	public final fun getPower ()Lio/github/anandkumarkparmar/platformsense/testing/fake/FakePowerProvider;
+	public final fun getStorage ()Lio/github/anandkumarkparmar/platformsense/testing/fake/FakeStorageProvider;
+	public final fun getSystemInfo ()Lio/github/anandkumarkparmar/platformsense/testing/fake/FakeSystemInfoProvider;
+	public final fun getTimezone ()Lio/github/anandkumarkparmar/platformsense/testing/fake/FakeTimezoneProvider;
+	public fun hardwareCapabilitiesProvider ()Lio/github/anandkumarkparmar/platformsense/core/provider/HardwareCapabilitiesProvider;
+	public fun localeProvider ()Lio/github/anandkumarkparmar/platformsense/core/provider/LocaleProvider;
+	public fun memoryProvider ()Lio/github/anandkumarkparmar/platformsense/core/provider/MemoryProvider;
+	public fun networkProvider ()Lio/github/anandkumarkparmar/platformsense/core/provider/NetworkProvider;
+	public fun powerProvider ()Lio/github/anandkumarkparmar/platformsense/core/provider/PowerProvider;
+	public fun storageProvider ()Lio/github/anandkumarkparmar/platformsense/core/provider/StorageProvider;
+	public fun systemInfoProvider ()Lio/github/anandkumarkparmar/platformsense/core/provider/SystemInfoProvider;
+	public fun timezoneProvider ()Lio/github/anandkumarkparmar/platformsense/core/provider/TimezoneProvider;
+}
+
+public final class io/github/anandkumarkparmar/platformsense/testing/fake/FakePowerProvider : io/github/anandkumarkparmar/platformsense/core/provider/PowerProvider {
+	public fun <init> ()V
+	public fun <init> (Lio/github/anandkumarkparmar/platformsense/core/models/state/PowerInfo;)V
+	public synthetic fun <init> (Lio/github/anandkumarkparmar/platformsense/core/models/state/PowerInfo;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun current ()Lio/github/anandkumarkparmar/platformsense/core/models/state/PowerInfo;
+	public fun flow ()Lkotlinx/coroutines/flow/Flow;
+	public final fun getCurrentValue ()Lio/github/anandkumarkparmar/platformsense/core/models/state/PowerInfo;
+	public final fun getState ()Lkotlinx/coroutines/flow/StateFlow;
+	public final fun setCurrentValue (Lio/github/anandkumarkparmar/platformsense/core/models/state/PowerInfo;)V
+}
+
+public final class io/github/anandkumarkparmar/platformsense/testing/fake/FakeStorageProvider : io/github/anandkumarkparmar/platformsense/core/provider/StorageProvider {
+	public fun <init> ()V
+	public fun <init> (Lio/github/anandkumarkparmar/platformsense/core/models/device/StorageInfo;)V
+	public synthetic fun <init> (Lio/github/anandkumarkparmar/platformsense/core/models/device/StorageInfo;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun current ()Lio/github/anandkumarkparmar/platformsense/core/models/device/StorageInfo;
+	public fun flow ()Lkotlinx/coroutines/flow/Flow;
+	public final fun getCurrentValue ()Lio/github/anandkumarkparmar/platformsense/core/models/device/StorageInfo;
+	public final fun getState ()Lkotlinx/coroutines/flow/StateFlow;
+	public final fun setCurrentValue (Lio/github/anandkumarkparmar/platformsense/core/models/device/StorageInfo;)V
+}
+
+public final class io/github/anandkumarkparmar/platformsense/testing/fake/FakeSystemInfoProvider : io/github/anandkumarkparmar/platformsense/core/provider/SystemInfoProvider {
+	public fun <init> ()V
+	public fun <init> (Lio/github/anandkumarkparmar/platformsense/core/models/device/SystemInfo;)V
+	public synthetic fun <init> (Lio/github/anandkumarkparmar/platformsense/core/models/device/SystemInfo;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun current ()Lio/github/anandkumarkparmar/platformsense/core/models/device/SystemInfo;
+	public fun flow ()Lkotlinx/coroutines/flow/Flow;
+	public final fun getCurrentValue ()Lio/github/anandkumarkparmar/platformsense/core/models/device/SystemInfo;
+	public final fun getState ()Lkotlinx/coroutines/flow/StateFlow;
+	public final fun setCurrentValue (Lio/github/anandkumarkparmar/platformsense/core/models/device/SystemInfo;)V
+}
+
+public final class io/github/anandkumarkparmar/platformsense/testing/fake/FakeTimezoneProvider : io/github/anandkumarkparmar/platformsense/core/provider/TimezoneProvider {
+	public fun <init> ()V
+	public fun <init> (Lio/github/anandkumarkparmar/platformsense/core/models/state/TimezoneInfo;)V
+	public synthetic fun <init> (Lio/github/anandkumarkparmar/platformsense/core/models/state/TimezoneInfo;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun current ()Lio/github/anandkumarkparmar/platformsense/core/models/state/TimezoneInfo;
+	public fun flow ()Lkotlinx/coroutines/flow/Flow;
+	public final fun getCurrentValue ()Lio/github/anandkumarkparmar/platformsense/core/models/state/TimezoneInfo;
+	public final fun getState ()Lkotlinx/coroutines/flow/StateFlow;
+	public final fun setCurrentValue (Lio/github/anandkumarkparmar/platformsense/core/models/state/TimezoneInfo;)V
+}
+

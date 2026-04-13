@@ -10,12 +10,12 @@ import kotlinx.coroutines.flow.asStateFlow
 /**
  * Fake [DisplayProvider] for tests. Configure [currentValue] to simulate display state.
  */
-class FakeDisplayProvider(initialValue: DisplayInfo = DisplayInfo()) : DisplayProvider {
+public class FakeDisplayProvider(initialValue: DisplayInfo = DisplayInfo()) : DisplayProvider {
 
     private val _state = MutableStateFlow(initialValue)
-    val state: StateFlow<DisplayInfo> = _state.asStateFlow()
+    public val state: StateFlow<DisplayInfo> = _state.asStateFlow()
 
-    var currentValue: DisplayInfo
+    public var currentValue: DisplayInfo
         get() = _state.value
         set(value) {
             _state.value = value

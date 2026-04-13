@@ -11,7 +11,7 @@ import platform.Foundation.NSOperationQueue
 import platform.Foundation.NSProcessInfo
 import platform.UIKit.UIApplicationDidReceiveMemoryWarningNotification
 
-class IosMemoryProvider : MemoryProvider {
+internal class IosMemoryProvider : MemoryProvider {
 
     override fun current(): MemoryInfo = getMemoryInfo()
 

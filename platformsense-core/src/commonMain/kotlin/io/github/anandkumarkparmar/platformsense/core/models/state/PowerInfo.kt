@@ -11,17 +11,17 @@ package io.github.anandkumarkparmar.platformsense.core.models.state
  * @property isCharging True if the device is currently connected to power.
  * @property thermalState The current thermal state of the device (Normal, Fair, Serious, Critical).
  */
-data class PowerInfo(
+public data class PowerInfo(
     val status: PowerState = PowerState.UNKNOWN,
     val batteryLevel: Float? = null,
     val isCharging: Boolean = false,
-    val thermalState: ThermalState = ThermalState.UNKNOWN
+    val thermalState: ThermalState = ThermalState.UNKNOWN,
 )
 
 /**
  * Represents the high-level power status of the device.
  */
-enum class PowerState {
+public enum class PowerState {
     /** Normal power state; device is not in a power-saving mode. */
     NORMAL,
 
@@ -41,7 +41,7 @@ enum class PowerState {
  * Represents the thermal state of the device.
  * Used to throttle performance-heavy operations.
  */
-enum class ThermalState {
+public enum class ThermalState {
     /** Normal operating temperature. */
     NORMAL,
 

@@ -17,7 +17,7 @@ import kotlinx.coroutines.flow.distinctUntilChanged
  *
  * Returns the first locale from the configuration (or default) in BCP 47 form.
  */
-class AndroidLocaleProvider(private val context: Context) : LocaleProvider {
+internal class AndroidLocaleProvider(private val context: Context) : LocaleProvider {
 
     override fun current(): LocaleInfo = mapToLocaleInfo(context.resources.configuration)
 

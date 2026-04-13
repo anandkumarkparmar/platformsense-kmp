@@ -21,7 +21,7 @@ import kotlinx.coroutines.flow.distinctUntilChanged
  * Maps power save mode and charging status to [PowerState].
  * Requires API 23+ (minSdk).
  */
-class AndroidPowerProvider(private val context: Context) : PowerProvider {
+internal class AndroidPowerProvider(private val context: Context) : PowerProvider {
 
     private val powerManager: PowerManager =
         context.getSystemService(Context.POWER_SERVICE) as PowerManager

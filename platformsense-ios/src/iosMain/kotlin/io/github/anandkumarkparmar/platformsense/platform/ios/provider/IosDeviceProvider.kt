@@ -18,7 +18,7 @@ import platform.posix.uname
 import platform.posix.utsname
 
 @OptIn(ExperimentalForeignApi::class)
-class IosDeviceProvider : DeviceProvider {
+internal class IosDeviceProvider : DeviceProvider {
 
     override fun current(): DeviceInfo = getDeviceInfo()
 

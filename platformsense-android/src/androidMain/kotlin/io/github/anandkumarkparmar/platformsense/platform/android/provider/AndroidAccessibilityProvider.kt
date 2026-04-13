@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
 
-class AndroidAccessibilityProvider(private val context: Context) : AccessibilityProvider {
+internal class AndroidAccessibilityProvider(private val context: Context) : AccessibilityProvider {
 
     override fun current(): AccessibilityInfo = getAccessibilityInfo()
 

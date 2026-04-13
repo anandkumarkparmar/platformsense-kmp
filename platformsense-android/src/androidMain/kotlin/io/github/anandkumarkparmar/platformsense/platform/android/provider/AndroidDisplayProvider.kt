@@ -19,7 +19,7 @@ import kotlinx.coroutines.flow.distinctUntilChanged
  * [Configuration] for dp dimensions and orientation, and [android.view.Display]
  * for refresh rate. Cutout detection uses [android.view.DisplayCutout] (API 28+).
  */
-class AndroidDisplayProvider(private val context: Context) : DisplayProvider {
+internal class AndroidDisplayProvider(private val context: Context) : DisplayProvider {
 
     override fun current(): DisplayInfo = buildDisplayInfo()
 

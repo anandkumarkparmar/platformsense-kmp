@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import platform.UIKit.UIScreen
 import platform.UIKit.UIUserInterfaceStyle
 
-class IosAppearanceProvider : AppearanceProvider {
+internal class IosAppearanceProvider : AppearanceProvider {
 
     override fun current(): AppearanceInfo = getAppearanceInfo()
 

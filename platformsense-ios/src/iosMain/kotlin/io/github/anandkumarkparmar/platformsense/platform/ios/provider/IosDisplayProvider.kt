@@ -17,7 +17,7 @@ import platform.UIKit.UIDeviceOrientationDidChangeNotification
 import platform.UIKit.UIScreen
 
 @OptIn(ExperimentalForeignApi::class)
-class IosDisplayProvider : DisplayProvider {
+internal class IosDisplayProvider : DisplayProvider {
 
     override fun current(): DisplayInfo = getDisplayInfo()
 

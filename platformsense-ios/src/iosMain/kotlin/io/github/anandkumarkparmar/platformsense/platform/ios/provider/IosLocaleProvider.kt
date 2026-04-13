@@ -17,7 +17,7 @@ import platform.Foundation.countryCode
 import platform.Foundation.currentLocale
 import platform.Foundation.languageCode
 
-class IosLocaleProvider : LocaleProvider {
+internal class IosLocaleProvider : LocaleProvider {
 
     override fun current(): LocaleInfo = getLocaleInfo()
 

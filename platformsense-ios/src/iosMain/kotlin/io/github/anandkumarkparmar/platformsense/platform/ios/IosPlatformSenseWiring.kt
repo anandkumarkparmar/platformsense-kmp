@@ -35,7 +35,7 @@ import io.github.anandkumarkparmar.platformsense.platform.ios.provider.IosTimezo
  * iOS wiring that supplies iOS-specific native providers to
  * [PlatformSense][io.github.anandkumarkparmar.platformsense.core.PlatformSense].
  */
-class IosPlatformSenseWiring : PlatformSenseWiring {
+public class IosPlatformSenseWiring : PlatformSenseWiring {
 
     override fun networkProvider(): NetworkProvider = IosNetworkProvider()
 
@@ -70,6 +70,6 @@ class IosPlatformSenseWiring : PlatformSenseWiring {
  * Helper function intended to be called from iOS Swift code (e.g. AppDelegate)
  * to initialize the PlatformSense singleton with iOS providers.
  */
-fun initializePlatformSense() {
+public fun initializePlatformSense() {
     PlatformSense.initialize(IosPlatformSenseWiring())
 }

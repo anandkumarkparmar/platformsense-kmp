@@ -13,7 +13,7 @@ package io.github.anandkumarkparmar.platformsense.core.models.state
  * @property isHighContrastEnabled True if the user has enabled high contrast mode.
  * @property isColorInversionEnabled True if the user has enabled color inversion.
  */
-data class AccessibilityInfo(
+public data class AccessibilityInfo(
     val isScreenReaderEnabled: Boolean = false,
     val isBoldTextEnabled: Boolean = false,
     val fontScale: Float = 1.0f,

@@ -12,17 +12,17 @@ package io.github.anandkumarkparmar.platformsense.core.models.state
  *                    May be used to reduce data usage (e.g. lower image quality).
  * @property isRoaming True if the active network is roaming (applicable mostly to cellular).
  */
-data class NetworkInfo(
+public data class NetworkInfo(
     val type: NetworkType = NetworkType.UNKNOWN,
     val isConnected: Boolean = false,
     val isMetered: Boolean = false,
-    val isRoaming: Boolean = false
+    val isRoaming: Boolean = false,
 )
 
 /**
  * Represents the type of network transport.
  */
-enum class NetworkType {
+public enum class NetworkType {
     /** Device is connected via Wi-Fi. */
     WIFI,
 

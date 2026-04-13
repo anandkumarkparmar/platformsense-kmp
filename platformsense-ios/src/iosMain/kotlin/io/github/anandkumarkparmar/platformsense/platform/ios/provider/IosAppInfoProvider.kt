@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import platform.Foundation.NSBundle
 
-class IosAppInfoProvider : AppInfoProvider {
+internal class IosAppInfoProvider : AppInfoProvider {
 
     override fun current(): AppInfo {
         val bundle = NSBundle.mainBundle

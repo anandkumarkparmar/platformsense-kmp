@@ -19,7 +19,7 @@ import platform.UIKit.UIDevice
 import platform.UIKit.UIDeviceBatteryState
 import platform.UIKit.UIDeviceBatteryStateDidChangeNotification
 
-class IosPowerProvider : PowerProvider {
+internal class IosPowerProvider : PowerProvider {
 
     init {
         UIDevice.currentDevice.batteryMonitoringEnabled = true

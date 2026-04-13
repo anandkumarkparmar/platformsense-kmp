@@ -9,9 +9,9 @@ import kotlinx.coroutines.flow.Flow
  * Implementations are platform-specific. Use [current] for one-off checks and [flow]
  * for reactive low-memory warnings.
  */
-interface MemoryProvider {
+public interface MemoryProvider {
 
-    fun current(): MemoryInfo
+    public fun current(): MemoryInfo
 
-    fun flow(): Flow<MemoryInfo>
+    public fun flow(): Flow<MemoryInfo>
 }

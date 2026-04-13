@@ -11,7 +11,7 @@ import platform.Foundation.NSFileSystemSize
 import platform.Foundation.NSHomeDirectory
 
 @OptIn(ExperimentalForeignApi::class)
-class IosStorageProvider : StorageProvider {
+internal class IosStorageProvider : StorageProvider {
 
     override fun current(): StorageInfo {
         val attrs = try {

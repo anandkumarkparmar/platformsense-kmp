@@ -12,7 +12,7 @@ package io.github.anandkumarkparmar.platformsense.core.models.device
  * @property manufacturer The manufacturer of the device hardware (e.g. "Samsung", "Apple"). Empty if unknown.
  * @property model The model of the device hardware (e.g. "SM-G998B", "iPhone 15 Pro"). Empty if unknown.
  */
-data class DeviceInfo(
+public data class DeviceInfo(
     val deviceClass: DeviceClass = DeviceClass.UNKNOWN,
     val osName: String = "",
     val osVersion: String = "",
@@ -23,7 +23,7 @@ data class DeviceInfo(
 /**
  * Represents the device form factor or class.
  */
-enum class DeviceClass {
+public enum class DeviceClass {
     /** Phone or similar small-form-factor device. */
     PHONE,
 

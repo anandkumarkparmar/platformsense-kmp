@@ -10,16 +10,16 @@ import kotlinx.coroutines.flow.Flow
  * domain models only. Use [current] for one-off checks and [flow] for UI that
  * reacts to connectivity changes (e.g. metered vs unmetered).
  */
-interface NetworkProvider {
+public interface NetworkProvider {
 
     /**
      * Returns the current network state at the time of the call.
      */
-    fun current(): NetworkInfo
+    public fun current(): NetworkInfo
 
     /**
      * Emits the current network state and then whenever it changes.
      * Implementations should emit at least once and then on each change.
      */
-    fun flow(): Flow<NetworkInfo>
+    public fun flow(): Flow<NetworkInfo>
 }

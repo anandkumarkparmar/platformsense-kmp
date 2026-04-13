@@ -10,9 +10,9 @@ import kotlinx.coroutines.flow.Flow
  * for UI that reacts to accessibility setting changes (e.g. screen reader toggled,
  * reduce motion enabled).
  */
-interface AccessibilityProvider {
+public interface AccessibilityProvider {
 
-    fun current(): AccessibilityInfo
+    public fun current(): AccessibilityInfo
 
-    fun flow(): Flow<AccessibilityInfo>
+    public fun flow(): Flow<AccessibilityInfo>
 }

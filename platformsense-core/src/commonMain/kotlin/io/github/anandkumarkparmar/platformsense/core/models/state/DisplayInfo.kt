@@ -16,7 +16,7 @@ package io.github.anandkumarkparmar.platformsense.core.models.state
  * @property orientation Current screen orientation.
  * @property hasCutout True if the display has a notch or cutout area.
  */
-data class DisplayInfo(
+public data class DisplayInfo(
     val widthDp: Int = 0,
     val heightDp: Int = 0,
     val widthPixels: Int = 0,
@@ -30,7 +30,7 @@ data class DisplayInfo(
 /**
  * Represents the current screen orientation.
  */
-enum class ScreenOrientation {
+public enum class ScreenOrientation {
     /** Device is in portrait (vertical) orientation. */
     PORTRAIT,
 

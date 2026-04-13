@@ -10,12 +10,12 @@ import kotlinx.coroutines.flow.asStateFlow
 /**
  * Fake [AppearanceProvider] for tests. Configure [currentValue] to simulate appearance state.
  */
-class FakeAppearanceProvider(initialValue: AppearanceInfo = AppearanceInfo()) : AppearanceProvider {
+public class FakeAppearanceProvider(initialValue: AppearanceInfo = AppearanceInfo()) : AppearanceProvider {
 
     private val _state = MutableStateFlow(initialValue)
-    val state: StateFlow<AppearanceInfo> = _state.asStateFlow()
+    public val state: StateFlow<AppearanceInfo> = _state.asStateFlow()
 
-    var currentValue: AppearanceInfo
+    public var currentValue: AppearanceInfo
         get() = _state.value
         set(value) {
             _state.value = value

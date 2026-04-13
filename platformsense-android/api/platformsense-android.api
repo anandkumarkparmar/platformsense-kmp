@@ -1,0 +1,18 @@
+public final class io/github/anandkumarkparmar/platformsense/platform/android/AndroidPlatformSenseWiring : io/github/anandkumarkparmar/platformsense/core/PlatformSenseWiring {
+	public fun <init> (Landroid/content/Context;)V
+	public fun accessibilityProvider ()Lio/github/anandkumarkparmar/platformsense/core/provider/AccessibilityProvider;
+	public fun appInfoProvider ()Lio/github/anandkumarkparmar/platformsense/core/provider/AppInfoProvider;
+	public fun appearanceProvider ()Lio/github/anandkumarkparmar/platformsense/core/provider/AppearanceProvider;
+	public fun biometricProvider ()Lio/github/anandkumarkparmar/platformsense/core/provider/BiometricProvider;
+	public fun deviceProvider ()Lio/github/anandkumarkparmar/platformsense/core/provider/DeviceProvider;
+	public fun displayProvider ()Lio/github/anandkumarkparmar/platformsense/core/provider/DisplayProvider;
+	public fun hardwareCapabilitiesProvider ()Lio/github/anandkumarkparmar/platformsense/core/provider/HardwareCapabilitiesProvider;
+	public fun localeProvider ()Lio/github/anandkumarkparmar/platformsense/core/provider/LocaleProvider;
+	public fun memoryProvider ()Lio/github/anandkumarkparmar/platformsense/core/provider/MemoryProvider;
+	public fun networkProvider ()Lio/github/anandkumarkparmar/platformsense/core/provider/NetworkProvider;
+	public fun powerProvider ()Lio/github/anandkumarkparmar/platformsense/core/provider/PowerProvider;
+	public fun storageProvider ()Lio/github/anandkumarkparmar/platformsense/core/provider/StorageProvider;
+	public fun systemInfoProvider ()Lio/github/anandkumarkparmar/platformsense/core/provider/SystemInfoProvider;
+	public fun timezoneProvider ()Lio/github/anandkumarkparmar/platformsense/core/provider/TimezoneProvider;
+}
+

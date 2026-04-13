@@ -10,16 +10,16 @@ import kotlinx.coroutines.flow.Flow
  * domain models only. Use [current] for one-off checks
  * and [flow] for UI that reacts to locale changes (e.g. user changes system language).
  */
-interface LocaleProvider {
+public interface LocaleProvider {
 
     /**
      * Returns the current locale info at the time of the call.
      */
-    fun current(): LocaleInfo
+    public fun current(): LocaleInfo
 
     /**
      * Emits the current locale info and then whenever it changes.
      * Implementations should emit at least once and then on each change.
      */
-    fun flow(): Flow<LocaleInfo>
+    public fun flow(): Flow<LocaleInfo>
 }

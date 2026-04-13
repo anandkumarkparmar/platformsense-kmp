@@ -22,7 +22,7 @@ import platform.LocalAuthentication.LAErrorBiometryNotEnrolled
 import platform.LocalAuthentication.LAPolicyDeviceOwnerAuthenticationWithBiometrics
 
 @OptIn(ExperimentalForeignApi::class)
-class IosBiometricProvider : BiometricProvider {
+internal class IosBiometricProvider : BiometricProvider {
 
     override fun current(): BiometricInfo = getBiometricInfo()
 

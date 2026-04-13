@@ -9,4 +9,4 @@ package io.github.anandkumarkparmar.platformsense.core.models.device
  * @property totalBytes Total internal storage in bytes.
  * @property availableBytes Available (free) internal storage in bytes.
  */
-data class StorageInfo(val totalBytes: Long = 0, val availableBytes: Long = 0)
+public data class StorageInfo(val totalBytes: Long = 0, val availableBytes: Long = 0)

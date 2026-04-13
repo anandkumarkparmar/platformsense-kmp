@@ -3,12 +3,14 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.android.library)
+    alias(libs.plugins.binary.compatibility.validator)
     `maven-publish`
 }
 
 version = libs.versions.platformsense.get()
 
 kotlin {
+    explicitApi()
     androidTarget {
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_17)

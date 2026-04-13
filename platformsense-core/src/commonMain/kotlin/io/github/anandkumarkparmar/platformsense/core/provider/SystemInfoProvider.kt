@@ -9,9 +9,9 @@ import kotlinx.coroutines.flow.Flow
  * System info is static for the lifetime of the process. Use [current] for one-off
  * queries (e.g. diagnostics, emulator detection).
  */
-interface SystemInfoProvider {
+public interface SystemInfoProvider {
 
-    fun current(): SystemInfo
+    public fun current(): SystemInfo
 
-    fun flow(): Flow<SystemInfo>
+    public fun flow(): Flow<SystemInfo>
 }

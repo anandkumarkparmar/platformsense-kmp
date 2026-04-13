@@ -15,7 +15,7 @@ import platform.Foundation.defaultTimeZone
 import platform.Foundation.resetSystemTimeZone
 import platform.Foundation.secondsFromGMT
 
-class IosTimezoneProvider : TimezoneProvider {
+internal class IosTimezoneProvider : TimezoneProvider {
 
     override fun current(): TimezoneInfo = getTimezoneInfo()
 

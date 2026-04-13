@@ -1,0 +1,28 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, iosX64]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <io.github.anandkumarkparmar:platformsense-ios>
+final class io.github.anandkumarkparmar.platformsense.platform.ios/IosPlatformSenseWiring : io.github.anandkumarkparmar.platformsense.core/PlatformSenseWiring { // io.github.anandkumarkparmar.platformsense.platform.ios/IosPlatformSenseWiring|null[0]
+    constructor <init>() // io.github.anandkumarkparmar.platformsense.platform.ios/IosPlatformSenseWiring.<init>|<init>(){}[0]
+
+    final fun accessibilityProvider(): io.github.anandkumarkparmar.platformsense.core.provider/AccessibilityProvider // io.github.anandkumarkparmar.platformsense.platform.ios/IosPlatformSenseWiring.accessibilityProvider|accessibilityProvider(){}[0]
+    final fun appInfoProvider(): io.github.anandkumarkparmar.platformsense.core.provider/AppInfoProvider // io.github.anandkumarkparmar.platformsense.platform.ios/IosPlatformSenseWiring.appInfoProvider|appInfoProvider(){}[0]
+    final fun appearanceProvider(): io.github.anandkumarkparmar.platformsense.core.provider/AppearanceProvider // io.github.anandkumarkparmar.platformsense.platform.ios/IosPlatformSenseWiring.appearanceProvider|appearanceProvider(){}[0]
+    final fun biometricProvider(): io.github.anandkumarkparmar.platformsense.core.provider/BiometricProvider // io.github.anandkumarkparmar.platformsense.platform.ios/IosPlatformSenseWiring.biometricProvider|biometricProvider(){}[0]
+    final fun deviceProvider(): io.github.anandkumarkparmar.platformsense.core.provider/DeviceProvider // io.github.anandkumarkparmar.platformsense.platform.ios/IosPlatformSenseWiring.deviceProvider|deviceProvider(){}[0]
+    final fun displayProvider(): io.github.anandkumarkparmar.platformsense.core.provider/DisplayProvider // io.github.anandkumarkparmar.platformsense.platform.ios/IosPlatformSenseWiring.displayProvider|displayProvider(){}[0]
+    final fun hardwareCapabilitiesProvider(): io.github.anandkumarkparmar.platformsense.core.provider/HardwareCapabilitiesProvider // io.github.anandkumarkparmar.platformsense.platform.ios/IosPlatformSenseWiring.hardwareCapabilitiesProvider|hardwareCapabilitiesProvider(){}[0]
+    final fun localeProvider(): io.github.anandkumarkparmar.platformsense.core.provider/LocaleProvider // io.github.anandkumarkparmar.platformsense.platform.ios/IosPlatformSenseWiring.localeProvider|localeProvider(){}[0]
+    final fun memoryProvider(): io.github.anandkumarkparmar.platformsense.core.provider/MemoryProvider // io.github.anandkumarkparmar.platformsense.platform.ios/IosPlatformSenseWiring.memoryProvider|memoryProvider(){}[0]
+    final fun networkProvider(): io.github.anandkumarkparmar.platformsense.core.provider/NetworkProvider // io.github.anandkumarkparmar.platformsense.platform.ios/IosPlatformSenseWiring.networkProvider|networkProvider(){}[0]
+    final fun powerProvider(): io.github.anandkumarkparmar.platformsense.core.provider/PowerProvider // io.github.anandkumarkparmar.platformsense.platform.ios/IosPlatformSenseWiring.powerProvider|powerProvider(){}[0]
+    final fun storageProvider(): io.github.anandkumarkparmar.platformsense.core.provider/StorageProvider // io.github.anandkumarkparmar.platformsense.platform.ios/IosPlatformSenseWiring.storageProvider|storageProvider(){}[0]
+    final fun systemInfoProvider(): io.github.anandkumarkparmar.platformsense.core.provider/SystemInfoProvider // io.github.anandkumarkparmar.platformsense.platform.ios/IosPlatformSenseWiring.systemInfoProvider|systemInfoProvider(){}[0]
+    final fun timezoneProvider(): io.github.anandkumarkparmar.platformsense.core.provider/TimezoneProvider // io.github.anandkumarkparmar.platformsense.platform.ios/IosPlatformSenseWiring.timezoneProvider|timezoneProvider(){}[0]
+}
+
+final fun io.github.anandkumarkparmar.platformsense.platform.ios/initializePlatformSense() // io.github.anandkumarkparmar.platformsense.platform.ios/initializePlatformSense|initializePlatformSense(){}[0]

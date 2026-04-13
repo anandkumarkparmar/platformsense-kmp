@@ -9,9 +9,9 @@ import kotlinx.coroutines.flow.Flow
  * Storage values may change over time but are not actively monitored.
  * Use [current] to get a point-in-time snapshot of available storage.
  */
-interface StorageProvider {
+public interface StorageProvider {
 
-    fun current(): StorageInfo
+    public fun current(): StorageInfo
 
-    fun flow(): Flow<StorageInfo>
+    public fun flow(): Flow<StorageInfo>
 }

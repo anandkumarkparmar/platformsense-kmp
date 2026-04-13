@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.compose).apply(false)
     alias(libs.plugins.ktlint)
     alias(libs.plugins.detekt)
+    alias(libs.plugins.binary.compatibility.validator) apply false
 }
 
 allprojects {
