@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.android.library)
     alias(libs.plugins.binary.compatibility.validator)
+    alias(libs.plugins.dokka)
     `maven-publish`
 }
 

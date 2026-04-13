@@ -11,7 +11,14 @@ import kotlinx.coroutines.flow.Flow
  */
 public interface StorageProvider {
 
+    /**
+     * Returns the current [StorageInfo] at the time of the call.
+     */
     public fun current(): StorageInfo
 
+    /**
+     * Emits the current [StorageInfo] and then whenever it changes.
+     * Implementations should emit at least once and then on each change.
+     */
     public fun flow(): Flow<StorageInfo>
 }

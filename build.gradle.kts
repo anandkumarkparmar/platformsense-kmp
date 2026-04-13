@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.ktlint)
     alias(libs.plugins.detekt)
     alias(libs.plugins.binary.compatibility.validator) apply false
+    alias(libs.plugins.dokka) apply false
 }
 
 allprojects {

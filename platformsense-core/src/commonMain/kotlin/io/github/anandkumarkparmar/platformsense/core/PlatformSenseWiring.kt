@@ -27,33 +27,47 @@ public interface PlatformSenseWiring {
 
     // -- State providers (reactive — values change at runtime) --
 
+    /** Creates the [NetworkProvider] for this platform. */
     public fun networkProvider(): NetworkProvider
 
+    /** Creates the [PowerProvider] for this platform. */
     public fun powerProvider(): PowerProvider
 
+    /** Creates the [LocaleProvider] for this platform. */
     public fun localeProvider(): LocaleProvider
 
+    /** Creates the [TimezoneProvider] for this platform. */
     public fun timezoneProvider(): TimezoneProvider
 
+    /** Creates the [AppearanceProvider] for this platform. */
     public fun appearanceProvider(): AppearanceProvider
 
+    /** Creates the [DisplayProvider] for this platform. */
     public fun displayProvider(): DisplayProvider
 
+    /** Creates the [AccessibilityProvider] for this platform. */
     public fun accessibilityProvider(): AccessibilityProvider
 
+    /** Creates the [MemoryProvider] for this platform. */
     public fun memoryProvider(): MemoryProvider
 
     // -- Device providers (static — values rarely change) --
 
+    /** Creates the [DeviceProvider] for this platform. */
     public fun deviceProvider(): DeviceProvider
 
+    /** Creates the [BiometricProvider] for this platform. */
     public fun biometricProvider(): BiometricProvider
 
+    /** Creates the [HardwareCapabilitiesProvider] for this platform. */
     public fun hardwareCapabilitiesProvider(): HardwareCapabilitiesProvider
 
+    /** Creates the [StorageProvider] for this platform. */
     public fun storageProvider(): StorageProvider
 
+    /** Creates the [SystemInfoProvider] for this platform. */
     public fun systemInfoProvider(): SystemInfoProvider
 
+    /** Creates the [AppInfoProvider] for this platform. */
     public fun appInfoProvider(): AppInfoProvider
 }

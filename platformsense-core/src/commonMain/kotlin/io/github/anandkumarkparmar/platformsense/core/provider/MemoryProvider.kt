@@ -11,7 +11,14 @@ import kotlinx.coroutines.flow.Flow
  */
 public interface MemoryProvider {
 
+    /**
+     * Returns the current [MemoryInfo] at the time of the call.
+     */
     public fun current(): MemoryInfo
 
+    /**
+     * Emits the current [MemoryInfo] and then whenever it changes.
+     * Implementations should emit at least once and then on each change.
+     */
     public fun flow(): Flow<MemoryInfo>
 }
