@@ -1,4 +1,4 @@
-package io.github.anandkumarkparmar.platformsense.core.models.environment
+package io.github.anandkumarkparmar.platformsense.core.models.state
 
 /**
  * Represents the current device power and battery information.

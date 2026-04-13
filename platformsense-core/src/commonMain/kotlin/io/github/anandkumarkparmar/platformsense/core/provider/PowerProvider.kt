@@ -1,6 +1,6 @@
 package io.github.anandkumarkparmar.platformsense.core.provider
 
-import io.github.anandkumarkparmar.platformsense.core.models.environment.PowerInfo
+import io.github.anandkumarkparmar.platformsense.core.models.state.PowerInfo
 import kotlinx.coroutines.flow.Flow
 
 /**

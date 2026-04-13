@@ -1,6 +1,6 @@
 package io.github.anandkumarkparmar.platformsense.testing.fake
 
-import io.github.anandkumarkparmar.platformsense.core.models.capability.BiometricInfo
+import io.github.anandkumarkparmar.platformsense.core.models.device.BiometricInfo
 import io.github.anandkumarkparmar.platformsense.core.provider.BiometricProvider
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow

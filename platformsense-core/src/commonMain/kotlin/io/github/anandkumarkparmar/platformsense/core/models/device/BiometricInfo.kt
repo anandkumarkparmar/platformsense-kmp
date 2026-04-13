@@ -1,4 +1,4 @@
-package io.github.anandkumarkparmar.platformsense.core.models.capability
+package io.github.anandkumarkparmar.platformsense.core.models.device
 
 /**
  * Immutable capability signal for biometric authentication support.

@@ -66,12 +66,13 @@ PlatformSenseWiringKt.initializePlatformSense()
 Start querying:
 
 ```kotlin
-// Snapshot
-val env = PlatformSense.environment()
-val caps = PlatformSense.capabilities()
+// One-shot snapshot
+val networkInfo = PlatformSense.network.current()
+val powerInfo = PlatformSense.power.current()
+val isDark = PlatformSense.appearance.current().isDarkMode
 
-// Reactive
-PlatformSense.environmentFlow.collect { env -> updateUI(env) }
+// Reactive stream
+PlatformSense.power.flow().collect { info -> updateBatteryUI(info) }
 ```
 
 <!-- SCREENSHOT: Sample app running on Android/iOS showing environment signals -->
@@ -89,9 +90,17 @@ PlatformSense.environmentFlow.collect { env -> updateUI(env) }
 | **Device info** | Phone, tablet, desktop, TV + manufacturer, model, OS |
 | **Locale** | Language tag, country, 24-hour format preference |
 | **Timezone** | IANA ID, display name, UTC offset |
+| **Appearance** | Dark mode detection, dynamic color (Material You) support |
+| **Display** | Screen size (dp + px), density, orientation, refresh rate, notch |
+| **Accessibility** | Screen reader, bold text, font scale, reduce motion, color inversion |
+| **Memory** | Total RAM, available RAM, low-memory warnings |
+| **Hardware** | Camera, NFC, GPS, Bluetooth, sensors, vibrator, haptics |
+| **Storage** | Total and available disk space |
+| **System info** | API level, CPU architecture, emulator detection, processor count |
+| **App info** | Version name, version code, package name, install timestamps |
 | **Biometric** | Fingerprint, Face ID, iris — status + type |
-| **Reactive updates** | Kotlin `Flow` for real-time environment changes |
-| **Test-first** | Fake providers & test rule for unit tests |
+| **Reactive updates** | Kotlin `Flow` for real-time signal changes |
+| **Test-first** | 14 fake providers & test rule for unit tests |
 
 ---
 
@@ -128,18 +137,28 @@ PlatformSense.environmentFlow.collect { env -> updateUI(env) }
 
 ```kotlin
 // Adapt to power state
-if (PlatformSense.environment().powerInfo.status == PowerState.LOW_POWER) {
+if (PlatformSense.power.current().status == PowerState.LOW_POWER) {
     disableAnimations()
 }
 
 // Adapt to network
-if (PlatformSense.environment().networkInfo.isMetered) {
+if (PlatformSense.network.current().isMetered) {
     loadLowResImages()
 }
 
+// Adapt to dark mode
+if (PlatformSense.appearance.current().isDarkMode) {
+    applyDarkTheme()
+}
+
 // Gate on biometrics
-if (PlatformSense.capabilities().biometric.status == BiometricStatus.READY) {
+if (PlatformSense.biometric.current().status == BiometricStatus.READY) {
     showBiometricLogin()
+}
+
+// Check hardware before showing feature
+if (PlatformSense.hardware.current().hasNfc) {
+    showNfcFeature()
 }
 ```
 

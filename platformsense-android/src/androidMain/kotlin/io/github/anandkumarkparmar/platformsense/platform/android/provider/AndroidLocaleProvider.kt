@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.res.Configuration
 import android.os.Build
 import android.text.format.DateFormat
-import io.github.anandkumarkparmar.platformsense.core.models.environment.LocaleInfo
+import io.github.anandkumarkparmar.platformsense.core.models.state.LocaleInfo
 import io.github.anandkumarkparmar.platformsense.core.provider.LocaleProvider
 import java.util.Locale
 import kotlinx.coroutines.channels.awaitClose

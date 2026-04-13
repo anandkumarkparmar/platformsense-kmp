@@ -1,6 +1,6 @@
 package io.github.anandkumarkparmar.platformsense.core.provider
 
-import io.github.anandkumarkparmar.platformsense.core.models.capability.BiometricInfo
+import io.github.anandkumarkparmar.platformsense.core.models.device.BiometricInfo
 import kotlinx.coroutines.flow.Flow
 
 /**

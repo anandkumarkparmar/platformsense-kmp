@@ -7,6 +7,40 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [Unreleased]
+
+### Breaking changes
+
+- **Architecture overhaul:** Removed `EnvironmentRepository`, `CapabilitiesRepository`, `EnvironmentSnapshot`, and `CapabilitiesSnapshot`. Providers are now accessed directly on the `PlatformSense` facade.
+- **New API:** `PlatformSense.network.current()` / `.flow()` replaces `PlatformSense.environment().networkInfo`. Each provider is accessed independently.
+- **Model packages renamed:** `models.environment.*` → `models.state.*` (reactive signals) and `models.device.*` (static device info). `models.capability.*` → `models.device.*`.
+- **Wiring interface changed:** `PlatformSenseWiring` now returns individual providers instead of repositories.
+
+### Added
+
+**8 new providers (Android + iOS)**
+- `AppearanceProvider` — dark mode detection, dynamic color (Material You) availability
+- `DisplayProvider` — screen dimensions (dp + px), density, orientation, refresh rate, notch/cutout detection
+- `AccessibilityProvider` — screen reader, bold text, font scale, reduce motion, high contrast, color inversion
+- `MemoryProvider` — total RAM, available RAM, low-memory warnings (reactive)
+- `HardwareCapabilitiesProvider` — camera, front camera, NFC, GPS, Bluetooth, accelerometer, gyroscope, magnetometer, barometer, vibrator, haptics
+- `StorageProvider` — total and available disk space
+- `SystemInfoProvider` — API level, SDK version, security patch, build number, emulator detection, CPU architecture, processor count
+- `AppInfoProvider` — app name, package/bundle ID, version name, version code, install/update timestamps
+
+**Direct provider access**
+- All 14 providers accessible via `PlatformSense.<provider>.current()` and `PlatformSense.<provider>.flow()`
+- Providers are lazily initialized and cached on first access
+
+### Removed
+
+- `EnvironmentRepository` and `CapabilitiesRepository`
+- `EnvironmentSnapshot` and `CapabilitiesSnapshot`
+- `PlatformSense.environment()`, `PlatformSense.environmentFlow`, `PlatformSense.capabilities()`
+- `secureHardwareAvailable` and `accessibilityAvailable` stub fields (replaced by real providers)
+
+---
+
 ## [v0.1.0] — 2026-02-28
 
 ### Added

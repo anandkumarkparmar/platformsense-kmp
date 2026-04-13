@@ -1,6 +1,6 @@
 package io.github.anandkumarkparmar.platformsense.platform.ios.provider
 
-import io.github.anandkumarkparmar.platformsense.core.models.environment.TimezoneInfo
+import io.github.anandkumarkparmar.platformsense.core.models.state.TimezoneInfo
 import io.github.anandkumarkparmar.platformsense.core.provider.TimezoneProvider
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow

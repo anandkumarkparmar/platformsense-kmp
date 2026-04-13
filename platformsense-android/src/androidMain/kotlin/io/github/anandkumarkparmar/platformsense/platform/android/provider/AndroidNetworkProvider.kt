@@ -5,8 +5,8 @@ import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.os.Build
-import io.github.anandkumarkparmar.platformsense.core.models.environment.NetworkInfo
-import io.github.anandkumarkparmar.platformsense.core.models.environment.NetworkType
+import io.github.anandkumarkparmar.platformsense.core.models.state.NetworkInfo
+import io.github.anandkumarkparmar.platformsense.core.models.state.NetworkType
 import io.github.anandkumarkparmar.platformsense.core.provider.NetworkProvider
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow

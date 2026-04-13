@@ -1,6 +1,6 @@
 package io.github.anandkumarkparmar.platformsense.testing.fake
 
-import io.github.anandkumarkparmar.platformsense.core.models.environment.TimezoneInfo
+import io.github.anandkumarkparmar.platformsense.core.models.state.TimezoneInfo
 import io.github.anandkumarkparmar.platformsense.core.provider.TimezoneProvider
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow

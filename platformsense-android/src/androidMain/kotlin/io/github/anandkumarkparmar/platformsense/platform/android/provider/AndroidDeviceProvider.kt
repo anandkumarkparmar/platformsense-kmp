@@ -3,8 +3,8 @@ package io.github.anandkumarkparmar.platformsense.platform.android.provider
 import android.content.Context
 import android.content.res.Configuration
 import android.os.Build
-import io.github.anandkumarkparmar.platformsense.core.models.environment.DeviceClass
-import io.github.anandkumarkparmar.platformsense.core.models.environment.DeviceInfo
+import io.github.anandkumarkparmar.platformsense.core.models.device.DeviceClass
+import io.github.anandkumarkparmar.platformsense.core.models.device.DeviceInfo
 import io.github.anandkumarkparmar.platformsense.core.provider.DeviceProvider
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow

@@ -1,4 +1,4 @@
-package io.github.anandkumarkparmar.platformsense.core.models.environment
+package io.github.anandkumarkparmar.platformsense.core.models.device
 
 /**
  * Represents the current device identity and hardware form factor.

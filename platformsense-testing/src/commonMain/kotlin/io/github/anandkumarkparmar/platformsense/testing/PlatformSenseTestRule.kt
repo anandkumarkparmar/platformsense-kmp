@@ -7,10 +7,10 @@ import io.github.anandkumarkparmar.platformsense.testing.fake.FakePlatformSenseW
  * Holds fake providers and wiring for overriding [PlatformSense] in tests.
  *
  * Usage:
- * 1. Create a [FakePlatformSenseWiring] (or use [wiring]).
- * 2. Configure fakes (e.g. [FakePlatformSenseWiring.power].currentValue = PowerState.LOW_POWER).
+ * 1. Create a [PlatformSenseTestRule] (it creates a [FakePlatformSenseWiring] automatically).
+ * 2. Configure fakes (e.g. [FakePlatformSenseWiring.power].currentValue = ...).
  * 3. Call [install] to initialize PlatformSense with the fakes.
- * 4. Run test code that uses PlatformSense.environment(), environmentFlow, capabilities().
+ * 4. Run test code that uses PlatformSense.network.current(), PlatformSense.power.flow(), etc.
  * 5. Call [uninstall] in teardown (e.g. @After) to clear PlatformSense for the next test.
  *
  * Example (JUnit):
@@ -19,8 +19,8 @@ import io.github.anandkumarkparmar.platformsense.testing.fake.FakePlatformSenseW
  * @Before fun setup() { rule.install() }
  * @After fun teardown() { rule.uninstall() }
  * @Test fun lowPower() {
- *   rule.wiring.power.currentValue = PowerState.LOW_POWER
- *   assertTrue(PlatformSense.environment().powerState == PowerState.LOW_POWER)
+ *   rule.wiring.power.currentValue = PowerInfo(status = PowerState.LOW_POWER)
+ *   assertEquals(PowerState.LOW_POWER, PlatformSense.power.current().status)
  * }
  * ```
  */

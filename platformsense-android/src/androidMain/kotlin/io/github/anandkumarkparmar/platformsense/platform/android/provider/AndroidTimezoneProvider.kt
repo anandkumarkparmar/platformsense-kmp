@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Build
-import io.github.anandkumarkparmar.platformsense.core.models.environment.TimezoneInfo
+import io.github.anandkumarkparmar.platformsense.core.models.state.TimezoneInfo
 import io.github.anandkumarkparmar.platformsense.core.provider.TimezoneProvider
 import java.util.TimeZone
 import kotlinx.coroutines.channels.awaitClose

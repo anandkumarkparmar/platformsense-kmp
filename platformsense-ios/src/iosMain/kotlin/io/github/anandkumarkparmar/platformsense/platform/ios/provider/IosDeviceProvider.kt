@@ -1,7 +1,7 @@
 package io.github.anandkumarkparmar.platformsense.platform.ios.provider
 
-import io.github.anandkumarkparmar.platformsense.core.models.environment.DeviceClass
-import io.github.anandkumarkparmar.platformsense.core.models.environment.DeviceInfo
+import io.github.anandkumarkparmar.platformsense.core.models.device.DeviceClass
+import io.github.anandkumarkparmar.platformsense.core.models.device.DeviceInfo
 import io.github.anandkumarkparmar.platformsense.core.provider.DeviceProvider
 import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.alloc

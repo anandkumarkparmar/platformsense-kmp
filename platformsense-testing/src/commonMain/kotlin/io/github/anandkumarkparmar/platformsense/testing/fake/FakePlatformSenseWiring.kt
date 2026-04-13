@@ -1,45 +1,80 @@
 package io.github.anandkumarkparmar.platformsense.testing.fake
 
-import io.github.anandkumarkparmar.platformsense.core.CapabilitiesRepository
-import io.github.anandkumarkparmar.platformsense.core.EnvironmentRepository
 import io.github.anandkumarkparmar.platformsense.core.PlatformSenseWiring
+import io.github.anandkumarkparmar.platformsense.core.provider.AccessibilityProvider
+import io.github.anandkumarkparmar.platformsense.core.provider.AppInfoProvider
+import io.github.anandkumarkparmar.platformsense.core.provider.AppearanceProvider
+import io.github.anandkumarkparmar.platformsense.core.provider.BiometricProvider
+import io.github.anandkumarkparmar.platformsense.core.provider.DeviceProvider
+import io.github.anandkumarkparmar.platformsense.core.provider.DisplayProvider
+import io.github.anandkumarkparmar.platformsense.core.provider.HardwareCapabilitiesProvider
+import io.github.anandkumarkparmar.platformsense.core.provider.LocaleProvider
+import io.github.anandkumarkparmar.platformsense.core.provider.MemoryProvider
+import io.github.anandkumarkparmar.platformsense.core.provider.NetworkProvider
+import io.github.anandkumarkparmar.platformsense.core.provider.PowerProvider
+import io.github.anandkumarkparmar.platformsense.core.provider.StorageProvider
+import io.github.anandkumarkparmar.platformsense.core.provider.SystemInfoProvider
+import io.github.anandkumarkparmar.platformsense.core.provider.TimezoneProvider
 
 /**
  * [PlatformSenseWiring] built from fake providers for tests.
  *
- * Use with [PlatformSense.initialize][io.github.anandkumarkparmar.platformsense.core.PlatformSense.initialize] to override
- * PlatformSense with configurable fakes. Configure each fake's [currentValue] to simulate
- * environment and capabilities (e.g. low power, metered network, biometric available).
+ * Use with [PlatformSense.initialize][io.github.anandkumarkparmar.platformsense.core.PlatformSense.initialize]
+ * to override PlatformSense with configurable fakes. Configure each fake's [currentValue] to simulate
+ * platform state (e.g. low power, metered network, dark mode, biometric available).
  *
  * Example:
  * ```
  * val fakes = FakePlatformSenseWiring()
- * fakes.network.currentValue = NetworkInfo(type = NetworkType.METERED, isMetered = true, isConnected = true)
- * fakes.power.currentValue = PowerInfo(status = PowerState.LOW_POWER, batteryLevel = 0.15f, isCharging = false)
- * fakes.device.currentValue = DeviceInfo(deviceClass = DeviceClass.TABLET, osName = "Android")
+ * fakes.network.currentValue = NetworkInfo(type = NetworkType.CELLULAR, isMetered = true, isConnected = true)
+ * fakes.appearance.currentValue = AppearanceInfo(isDarkMode = true)
  * PlatformSense.initialize(fakes)
- * // ... test code using PlatformSense.environment(), etc.
+ * // ... test code using PlatformSense.network.current(), etc.
  * PlatformSense.resetForTest()
  * ```
  */
 class FakePlatformSenseWiring(
     val network: FakeNetworkProvider = FakeNetworkProvider(),
     val power: FakePowerProvider = FakePowerProvider(),
-    val device: FakeDeviceProvider = FakeDeviceProvider(),
     val locale: FakeLocaleProvider = FakeLocaleProvider(),
     val timezone: FakeTimezoneProvider = FakeTimezoneProvider(),
+    val appearance: FakeAppearanceProvider = FakeAppearanceProvider(),
+    val display: FakeDisplayProvider = FakeDisplayProvider(),
+    val accessibility: FakeAccessibilityProvider = FakeAccessibilityProvider(),
+    val memory: FakeMemoryProvider = FakeMemoryProvider(),
+    val device: FakeDeviceProvider = FakeDeviceProvider(),
     val biometric: FakeBiometricProvider = FakeBiometricProvider(),
+    val hardware: FakeHardwareCapabilitiesProvider = FakeHardwareCapabilitiesProvider(),
+    val storage: FakeStorageProvider = FakeStorageProvider(),
+    val systemInfo: FakeSystemInfoProvider = FakeSystemInfoProvider(),
+    val appInfo: FakeAppInfoProvider = FakeAppInfoProvider(),
 ) : PlatformSenseWiring {
 
-    override fun environmentRepository(): EnvironmentRepository = EnvironmentRepository(
-        networkProvider = { network },
-        powerProvider = { power },
-        deviceProvider = { device },
-        localeProvider = { locale },
-        timezoneProvider = { timezone },
-    )
+    override fun networkProvider(): NetworkProvider = network
 
-    override fun capabilitiesRepository(): CapabilitiesRepository = CapabilitiesRepository(
-        biometricProvider = { biometric },
-    )
+    override fun powerProvider(): PowerProvider = power
+
+    override fun localeProvider(): LocaleProvider = locale
+
+    override fun timezoneProvider(): TimezoneProvider = timezone
+
+    override fun appearanceProvider(): AppearanceProvider = appearance
+
+    override fun displayProvider(): DisplayProvider = display
+
+    override fun accessibilityProvider(): AccessibilityProvider = accessibility
+
+    override fun memoryProvider(): MemoryProvider = memory
+
+    override fun deviceProvider(): DeviceProvider = device
+
+    override fun biometricProvider(): BiometricProvider = biometric
+
+    override fun hardwareCapabilitiesProvider(): HardwareCapabilitiesProvider = hardware
+
+    override fun storageProvider(): StorageProvider = storage
+
+    override fun systemInfoProvider(): SystemInfoProvider = systemInfo
+
+    override fun appInfoProvider(): AppInfoProvider = appInfo
 }

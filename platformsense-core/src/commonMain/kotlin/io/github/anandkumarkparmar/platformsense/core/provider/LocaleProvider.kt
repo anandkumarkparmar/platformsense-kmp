@@ -1,6 +1,6 @@
 package io.github.anandkumarkparmar.platformsense.core.provider
 
-import io.github.anandkumarkparmar.platformsense.core.models.environment.LocaleInfo
+import io.github.anandkumarkparmar.platformsense.core.models.state.LocaleInfo
 import kotlinx.coroutines.flow.Flow
 
 /**
