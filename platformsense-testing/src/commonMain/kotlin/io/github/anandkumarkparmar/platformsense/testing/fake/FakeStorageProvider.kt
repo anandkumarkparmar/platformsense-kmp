@@ -10,12 +10,12 @@ import kotlinx.coroutines.flow.asStateFlow
 /**
  * Fake [StorageProvider] for tests. Configure [currentValue] to simulate storage info.
  */
-class FakeStorageProvider(initialValue: StorageInfo = StorageInfo()) : StorageProvider {
+public class FakeStorageProvider(initialValue: StorageInfo = StorageInfo()) : StorageProvider {
 
     private val _state = MutableStateFlow(initialValue)
-    val state: StateFlow<StorageInfo> = _state.asStateFlow()
+    public val state: StateFlow<StorageInfo> = _state.asStateFlow()
 
-    var currentValue: StorageInfo
+    public var currentValue: StorageInfo
         get() = _state.value
         set(value) {
             _state.value = value

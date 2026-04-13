@@ -10,12 +10,12 @@ import kotlinx.coroutines.flow.asStateFlow
 /**
  * Fake [MemoryProvider] for tests. Configure [currentValue] to simulate memory state.
  */
-class FakeMemoryProvider(initialValue: MemoryInfo = MemoryInfo()) : MemoryProvider {
+public class FakeMemoryProvider(initialValue: MemoryInfo = MemoryInfo()) : MemoryProvider {
 
     private val _state = MutableStateFlow(initialValue)
-    val state: StateFlow<MemoryInfo> = _state.asStateFlow()
+    public val state: StateFlow<MemoryInfo> = _state.asStateFlow()
 
-    var currentValue: MemoryInfo
+    public var currentValue: MemoryInfo
         get() = _state.value
         set(value) {
             _state.value = value

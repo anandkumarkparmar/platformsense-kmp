@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.flowOf
  *
  * Maps [BiometricManager.canAuthenticate] to [BiometricInfo].
  */
-class AndroidBiometricProvider(private val context: Context) : BiometricProvider {
+internal class AndroidBiometricProvider(private val context: Context) : BiometricProvider {
 
     override fun current(): BiometricInfo = getBiometricInfo()
 

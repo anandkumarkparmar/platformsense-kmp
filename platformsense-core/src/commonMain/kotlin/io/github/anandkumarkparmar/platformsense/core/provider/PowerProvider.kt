@@ -10,16 +10,16 @@ import kotlinx.coroutines.flow.Flow
  * domain models only. Use [current] for one-off checks and [flow] for UI that
  * reacts to power changes (e.g. low power mode, charging).
  */
-interface PowerProvider {
+public interface PowerProvider {
 
     /**
      * Returns the current power info at the time of the call.
      */
-    fun current(): PowerInfo
+    public fun current(): PowerInfo
 
     /**
      * Emits the current power info and then whenever it changes.
      * Implementations should emit at least once and then on each change.
      */
-    fun flow(): Flow<PowerInfo>
+    public fun flow(): Flow<PowerInfo>
 }

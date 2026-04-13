@@ -9,9 +9,16 @@ import kotlinx.coroutines.flow.Flow
  * App info is static for the lifetime of the process. Use [current] for one-off
  * queries (e.g. about screen, analytics events).
  */
-interface AppInfoProvider {
+public interface AppInfoProvider {
 
-    fun current(): AppInfo
+    /**
+     * Returns the current [AppInfo] at the time of the call.
+     */
+    public fun current(): AppInfo
 
-    fun flow(): Flow<AppInfo>
+    /**
+     * Emits the current [AppInfo] and then whenever it changes.
+     * Implementations should emit at least once and then on each change.
+     */
+    public fun flow(): Flow<AppInfo>
 }

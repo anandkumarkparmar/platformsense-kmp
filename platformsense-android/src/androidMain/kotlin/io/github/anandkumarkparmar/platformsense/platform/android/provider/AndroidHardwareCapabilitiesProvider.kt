@@ -9,7 +9,7 @@ import io.github.anandkumarkparmar.platformsense.core.provider.HardwareCapabilit
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 
-class AndroidHardwareCapabilitiesProvider(private val context: Context) : HardwareCapabilitiesProvider {
+internal class AndroidHardwareCapabilitiesProvider(private val context: Context) : HardwareCapabilitiesProvider {
 
     @Suppress("DEPRECATION")
     override fun current(): HardwareCapabilities {

@@ -10,12 +10,12 @@ import kotlinx.coroutines.flow.asStateFlow
 /**
  * Fake [AccessibilityProvider] for tests. Configure [currentValue] to simulate accessibility state.
  */
-class FakeAccessibilityProvider(initialValue: AccessibilityInfo = AccessibilityInfo()) : AccessibilityProvider {
+public class FakeAccessibilityProvider(initialValue: AccessibilityInfo = AccessibilityInfo()) : AccessibilityProvider {
 
     private val _state = MutableStateFlow(initialValue)
-    val state: StateFlow<AccessibilityInfo> = _state.asStateFlow()
+    public val state: StateFlow<AccessibilityInfo> = _state.asStateFlow()
 
-    var currentValue: AccessibilityInfo
+    public var currentValue: AccessibilityInfo
         get() = _state.value
         set(value) {
             _state.value = value

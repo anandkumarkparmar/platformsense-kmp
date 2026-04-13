@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.distinctUntilChanged
  * Detects dark mode via [Configuration.uiMode] and dynamic color support
  * via API level (Android 12 / API 31+).
  */
-class AndroidAppearanceProvider(private val context: Context) : AppearanceProvider {
+internal class AndroidAppearanceProvider(private val context: Context) : AppearanceProvider {
 
     override fun current(): AppearanceInfo = mapToAppearanceInfo(context.resources.configuration)
 

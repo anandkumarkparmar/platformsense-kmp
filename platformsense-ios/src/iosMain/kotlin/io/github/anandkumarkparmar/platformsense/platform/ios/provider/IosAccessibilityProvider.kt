@@ -30,7 +30,7 @@ import platform.UIKit.UIContentSizeCategoryLarge
 import platform.UIKit.UIContentSizeCategoryMedium
 import platform.UIKit.UIContentSizeCategorySmall
 
-class IosAccessibilityProvider : AccessibilityProvider {
+internal class IosAccessibilityProvider : AccessibilityProvider {
 
     override fun current(): AccessibilityInfo = getAccessibilityInfo()
 

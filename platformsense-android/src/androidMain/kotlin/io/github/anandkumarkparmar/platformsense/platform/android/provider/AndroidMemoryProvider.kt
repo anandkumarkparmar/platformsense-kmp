@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
 
-class AndroidMemoryProvider(private val context: Context) : MemoryProvider {
+internal class AndroidMemoryProvider(private val context: Context) : MemoryProvider {
 
     override fun current(): MemoryInfo = getMemoryInfo()
 

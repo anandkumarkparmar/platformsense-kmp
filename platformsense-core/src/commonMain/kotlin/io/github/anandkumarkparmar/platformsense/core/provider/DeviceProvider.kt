@@ -10,16 +10,16 @@ import kotlinx.coroutines.flow.Flow
  * domain models only. Use [current] for one-off checks and [flow] for UI that
  * adapts when device class changes (e.g. foldables, tablet mode).
  */
-interface DeviceProvider {
+public interface DeviceProvider {
 
     /**
      * Returns the current device info at the time of the call.
      */
-    fun current(): DeviceInfo
+    public fun current(): DeviceInfo
 
     /**
      * Emits the current device info and then whenever it changes.
      * Implementations should emit at least once and then on each change.
      */
-    fun flow(): Flow<DeviceInfo>
+    public fun flow(): Flow<DeviceInfo>
 }

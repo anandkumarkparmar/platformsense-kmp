@@ -69,6 +69,7 @@ coverage/
 *.orig
 
 # Custom Folders
+/.todo/
 
 # Claude Code (AI assistant) generated files — not for version control
 /.claude/

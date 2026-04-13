@@ -23,37 +23,51 @@ import io.github.anandkumarkparmar.platformsense.core.provider.TimezoneProvider
  *
  * Each method returns a provider that is resolved lazily by the facade on first access.
  */
-interface PlatformSenseWiring {
+public interface PlatformSenseWiring {
 
     // -- State providers (reactive — values change at runtime) --
 
-    fun networkProvider(): NetworkProvider
+    /** Creates the [NetworkProvider] for this platform. */
+    public fun networkProvider(): NetworkProvider
 
-    fun powerProvider(): PowerProvider
+    /** Creates the [PowerProvider] for this platform. */
+    public fun powerProvider(): PowerProvider
 
-    fun localeProvider(): LocaleProvider
+    /** Creates the [LocaleProvider] for this platform. */
+    public fun localeProvider(): LocaleProvider
 
-    fun timezoneProvider(): TimezoneProvider
+    /** Creates the [TimezoneProvider] for this platform. */
+    public fun timezoneProvider(): TimezoneProvider
 
-    fun appearanceProvider(): AppearanceProvider
+    /** Creates the [AppearanceProvider] for this platform. */
+    public fun appearanceProvider(): AppearanceProvider
 
-    fun displayProvider(): DisplayProvider
+    /** Creates the [DisplayProvider] for this platform. */
+    public fun displayProvider(): DisplayProvider
 
-    fun accessibilityProvider(): AccessibilityProvider
+    /** Creates the [AccessibilityProvider] for this platform. */
+    public fun accessibilityProvider(): AccessibilityProvider
 
-    fun memoryProvider(): MemoryProvider
+    /** Creates the [MemoryProvider] for this platform. */
+    public fun memoryProvider(): MemoryProvider
 
     // -- Device providers (static — values rarely change) --
 
-    fun deviceProvider(): DeviceProvider
+    /** Creates the [DeviceProvider] for this platform. */
+    public fun deviceProvider(): DeviceProvider
 
-    fun biometricProvider(): BiometricProvider
+    /** Creates the [BiometricProvider] for this platform. */
+    public fun biometricProvider(): BiometricProvider
 
-    fun hardwareCapabilitiesProvider(): HardwareCapabilitiesProvider
+    /** Creates the [HardwareCapabilitiesProvider] for this platform. */
+    public fun hardwareCapabilitiesProvider(): HardwareCapabilitiesProvider
 
-    fun storageProvider(): StorageProvider
+    /** Creates the [StorageProvider] for this platform. */
+    public fun storageProvider(): StorageProvider
 
-    fun systemInfoProvider(): SystemInfoProvider
+    /** Creates the [SystemInfoProvider] for this platform. */
+    public fun systemInfoProvider(): SystemInfoProvider
 
-    fun appInfoProvider(): AppInfoProvider
+    /** Creates the [AppInfoProvider] for this platform. */
+    public fun appInfoProvider(): AppInfoProvider
 }

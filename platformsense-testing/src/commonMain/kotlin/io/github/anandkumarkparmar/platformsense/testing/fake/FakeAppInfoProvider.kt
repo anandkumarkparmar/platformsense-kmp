@@ -10,12 +10,12 @@ import kotlinx.coroutines.flow.asStateFlow
 /**
  * Fake [AppInfoProvider] for tests. Configure [currentValue] to simulate app info.
  */
-class FakeAppInfoProvider(initialValue: AppInfo = AppInfo()) : AppInfoProvider {
+public class FakeAppInfoProvider(initialValue: AppInfo = AppInfo()) : AppInfoProvider {
 
     private val _state = MutableStateFlow(initialValue)
-    val state: StateFlow<AppInfo> = _state.asStateFlow()
+    public val state: StateFlow<AppInfo> = _state.asStateFlow()
 
-    var currentValue: AppInfo
+    public var currentValue: AppInfo
         get() = _state.value
         set(value) {
             _state.value = value

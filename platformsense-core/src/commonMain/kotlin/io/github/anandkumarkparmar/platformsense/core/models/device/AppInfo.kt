@@ -12,7 +12,7 @@ package io.github.anandkumarkparmar.platformsense.core.models.device
  * @property firstInstallTime Epoch millis of first install, if available. Null on iOS.
  * @property lastUpdateTime Epoch millis of last update, if available. Null on iOS.
  */
-data class AppInfo(
+public data class AppInfo(
     val appName: String = "",
     val packageName: String = "",
     val versionName: String = "",

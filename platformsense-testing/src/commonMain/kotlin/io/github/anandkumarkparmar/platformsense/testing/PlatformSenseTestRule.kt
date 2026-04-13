@@ -24,21 +24,21 @@ import io.github.anandkumarkparmar.platformsense.testing.fake.FakePlatformSenseW
  * }
  * ```
  */
-class PlatformSenseTestRule {
+public class PlatformSenseTestRule {
 
-    val wiring: FakePlatformSenseWiring = FakePlatformSenseWiring()
+    public val wiring: FakePlatformSenseWiring = FakePlatformSenseWiring()
 
     /**
      * Initializes PlatformSense with the fake wiring. Call in test setup.
      */
-    fun install() {
+    public fun install() {
         PlatformSense.initialize(wiring)
     }
 
     /**
      * Clears PlatformSense so the next test can re-initialize. Call in test teardown.
      */
-    fun uninstall() {
+    public fun uninstall() {
         PlatformSense.resetForTest()
     }
 }

@@ -21,7 +21,7 @@ import platform.Network.nw_path_status_satisfied
 import platform.Network.nw_path_uses_interface_type
 import platform.darwin.dispatch_get_main_queue
 
-class IosNetworkProvider : NetworkProvider {
+internal class IosNetworkProvider : NetworkProvider {
 
     // Cached last-known network info; updated by the flow. Provides best-effort synchronous access.
     private var cachedNetworkInfo: NetworkInfo = NetworkInfo()

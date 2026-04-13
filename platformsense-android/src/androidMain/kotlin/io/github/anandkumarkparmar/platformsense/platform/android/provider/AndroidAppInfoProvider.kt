@@ -7,7 +7,7 @@ import io.github.anandkumarkparmar.platformsense.core.provider.AppInfoProvider
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 
-class AndroidAppInfoProvider(private val context: Context) : AppInfoProvider {
+internal class AndroidAppInfoProvider(private val context: Context) : AppInfoProvider {
 
     override fun current(): AppInfo {
         val packageName = context.packageName

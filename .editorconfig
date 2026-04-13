@@ -16,6 +16,7 @@ trim_trailing_whitespace = true
 trim_trailing_whitespace = false
 
 [*.{kt,kts}]
+ij_kotlin_code_style_defaults = KOTLIN_OFFICIAL
 ktlint_code_style = android_studio
 ktlint_standard_no-wildcard-imports = enabled
 ktlint_standard_trailing-comma-on-call-site = disabled

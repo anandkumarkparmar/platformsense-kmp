@@ -7,7 +7,7 @@ import io.github.anandkumarkparmar.platformsense.core.provider.StorageProvider
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 
-class AndroidStorageProvider : StorageProvider {
+internal class AndroidStorageProvider : StorageProvider {
 
     override fun current(): StorageInfo {
         val stat = StatFs(Environment.getDataDirectory().path)

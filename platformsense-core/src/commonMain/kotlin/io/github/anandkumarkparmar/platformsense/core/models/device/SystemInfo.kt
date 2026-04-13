@@ -13,7 +13,7 @@ package io.github.anandkumarkparmar.platformsense.core.models.device
  * @property cpuArchitecture Primary CPU architecture (e.g. "arm64-v8a", "arm64").
  * @property processorCount Number of available processors/cores.
  */
-data class SystemInfo(
+public data class SystemInfo(
     val apiLevel: Int? = null,
     val sdkVersion: String = "",
     val securityPatchLevel: String? = null,

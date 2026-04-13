@@ -11,7 +11,7 @@ package io.github.anandkumarkparmar.platformsense.core.models.state
  * @property country The ISO 3166 country/region code (e.g. "US", "JP").
  * @property is24HourFormat True if the user prefers 24-hour time formatting, false for 12-hour.
  */
-data class LocaleInfo(
+public data class LocaleInfo(
     val languageTag: String = "",
     val language: String = "",
     val country: String = "",

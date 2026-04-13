@@ -10,7 +10,7 @@ package io.github.anandkumarkparmar.platformsense.core.models.state
  * @property availableRamBytes Available RAM in bytes, if determinable. Null if unknown.
  * @property isLowMemory True if the system is currently under memory pressure.
  */
-data class MemoryInfo(
+public data class MemoryInfo(
     val totalRamBytes: Long = 0,
     val availableRamBytes: Long? = null,
     val isLowMemory: Boolean = false

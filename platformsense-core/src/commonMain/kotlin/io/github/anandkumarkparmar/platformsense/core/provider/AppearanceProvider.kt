@@ -10,16 +10,16 @@ import kotlinx.coroutines.flow.Flow
  * Implementations are platform-specific. Use [current] for one-off checks and [flow]
  * for UI that reacts to dark mode changes.
  */
-interface AppearanceProvider {
+public interface AppearanceProvider {
 
     /**
      * Returns the current appearance info at the time of the call.
      */
-    fun current(): AppearanceInfo
+    public fun current(): AppearanceInfo
 
     /**
      * Emits the current appearance info and then whenever it changes.
      * Implementations should emit at least once and then on each change.
      */
-    fun flow(): Flow<AppearanceInfo>
+    public fun flow(): Flow<AppearanceInfo>
 }

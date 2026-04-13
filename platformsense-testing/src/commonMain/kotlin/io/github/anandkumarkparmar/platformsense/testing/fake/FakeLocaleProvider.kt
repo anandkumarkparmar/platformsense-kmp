@@ -10,12 +10,12 @@ import kotlinx.coroutines.flow.asStateFlow
 /**
  * Fake [LocaleProvider] for tests. Configure [currentValue] to simulate locale info.
  */
-class FakeLocaleProvider(initialValue: LocaleInfo = LocaleInfo()) : LocaleProvider {
+public class FakeLocaleProvider(initialValue: LocaleInfo = LocaleInfo()) : LocaleProvider {
 
     private val _state = MutableStateFlow(initialValue)
-    val state: StateFlow<LocaleInfo> = _state.asStateFlow()
+    public val state: StateFlow<LocaleInfo> = _state.asStateFlow()
 
-    var currentValue: LocaleInfo
+    public var currentValue: LocaleInfo
         get() = _state.value
         set(value) {
             _state.value = value

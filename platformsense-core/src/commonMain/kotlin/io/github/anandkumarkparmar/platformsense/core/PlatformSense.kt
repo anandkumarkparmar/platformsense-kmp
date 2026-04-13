@@ -33,7 +33,7 @@ import io.github.anandkumarkparmar.platformsense.core.provider.TimezoneProvider
  *
  * @see initialize
  */
-object PlatformSense {
+public object PlatformSense {
 
     private var wiring: PlatformSenseWiring? = null
 
@@ -56,61 +56,61 @@ object PlatformSense {
     // -- State providers (reactive) --
 
     /** Network connectivity state. */
-    val network: NetworkProvider
+    public val network: NetworkProvider
         get() = _network ?: requireWiring().networkProvider().also { _network = it }
 
     /** Power and battery state. */
-    val power: PowerProvider
+    public val power: PowerProvider
         get() = _power ?: requireWiring().powerProvider().also { _power = it }
 
     /** Locale and regional preferences. */
-    val locale: LocaleProvider
+    public val locale: LocaleProvider
         get() = _locale ?: requireWiring().localeProvider().also { _locale = it }
 
     /** Timezone information. */
-    val timezone: TimezoneProvider
+    public val timezone: TimezoneProvider
         get() = _timezone ?: requireWiring().timezoneProvider().also { _timezone = it }
 
     /** System appearance (dark mode, dynamic color). */
-    val appearance: AppearanceProvider
+    public val appearance: AppearanceProvider
         get() = _appearance ?: requireWiring().appearanceProvider().also { _appearance = it }
 
     /** Display and screen information. */
-    val display: DisplayProvider
+    public val display: DisplayProvider
         get() = _display ?: requireWiring().displayProvider().also { _display = it }
 
     /** Accessibility settings and state. */
-    val accessibility: AccessibilityProvider
+    public val accessibility: AccessibilityProvider
         get() = _accessibility ?: requireWiring().accessibilityProvider().also { _accessibility = it }
 
     /** Memory (RAM) information and low-memory warnings. */
-    val memory: MemoryProvider
+    public val memory: MemoryProvider
         get() = _memory ?: requireWiring().memoryProvider().also { _memory = it }
 
     // -- Device providers (static) --
 
     /** Device identity and form factor. */
-    val device: DeviceProvider
+    public val device: DeviceProvider
         get() = _device ?: requireWiring().deviceProvider().also { _device = it }
 
     /** Biometric authentication capability. */
-    val biometric: BiometricProvider
+    public val biometric: BiometricProvider
         get() = _biometric ?: requireWiring().biometricProvider().also { _biometric = it }
 
     /** Hardware capability flags (camera, NFC, GPS, sensors). */
-    val hardware: HardwareCapabilitiesProvider
+    public val hardware: HardwareCapabilitiesProvider
         get() = _hardware ?: requireWiring().hardwareCapabilitiesProvider().also { _hardware = it }
 
     /** Device storage information. */
-    val storage: StorageProvider
+    public val storage: StorageProvider
         get() = _storage ?: requireWiring().storageProvider().also { _storage = it }
 
     /** Extended system and hardware information. */
-    val systemInfo: SystemInfoProvider
+    public val systemInfo: SystemInfoProvider
         get() = _systemInfo ?: requireWiring().systemInfoProvider().also { _systemInfo = it }
 
     /** App identity and metadata. */
-    val appInfo: AppInfoProvider
+    public val appInfo: AppInfoProvider
         get() = _appInfo ?: requireWiring().appInfoProvider().also { _appInfo = it }
 
     /**
@@ -119,21 +119,21 @@ object PlatformSense {
      *
      * @param wiring Platform wiring supplied by the platform module (e.g. Android or iOS).
      */
-    fun initialize(wiring: PlatformSenseWiring) {
+    public fun initialize(wiring: PlatformSenseWiring) {
         this.wiring = wiring
     }
 
     /**
      * Returns whether [initialize] has been called.
      */
-    fun isInitialized(): Boolean = wiring != null
+    public fun isInitialized(): Boolean = wiring != null
 
     /**
      * Clears the configured wiring and cached providers. For test teardown only;
      * allows the next test to call [initialize] with fakes or real wiring.
      * Call in @After or equivalent.
      */
-    fun resetForTest() {
+    public fun resetForTest() {
         wiring = null
         _network = null
         _power = null

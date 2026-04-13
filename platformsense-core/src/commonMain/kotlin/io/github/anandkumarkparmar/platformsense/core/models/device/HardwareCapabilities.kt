@@ -18,7 +18,7 @@ package io.github.anandkumarkparmar.platformsense.core.models.device
  * @property hasVibrator True if the device has a vibration motor.
  * @property hasHaptics True if the device supports advanced haptic feedback.
  */
-data class HardwareCapabilities(
+public data class HardwareCapabilities(
     val hasCamera: Boolean = false,
     val hasFrontCamera: Boolean = false,
     val hasNfc: Boolean = false,

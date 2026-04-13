@@ -33,21 +33,21 @@ import io.github.anandkumarkparmar.platformsense.core.provider.TimezoneProvider
  * PlatformSense.resetForTest()
  * ```
  */
-class FakePlatformSenseWiring(
-    val network: FakeNetworkProvider = FakeNetworkProvider(),
-    val power: FakePowerProvider = FakePowerProvider(),
-    val locale: FakeLocaleProvider = FakeLocaleProvider(),
-    val timezone: FakeTimezoneProvider = FakeTimezoneProvider(),
-    val appearance: FakeAppearanceProvider = FakeAppearanceProvider(),
-    val display: FakeDisplayProvider = FakeDisplayProvider(),
-    val accessibility: FakeAccessibilityProvider = FakeAccessibilityProvider(),
-    val memory: FakeMemoryProvider = FakeMemoryProvider(),
-    val device: FakeDeviceProvider = FakeDeviceProvider(),
-    val biometric: FakeBiometricProvider = FakeBiometricProvider(),
-    val hardware: FakeHardwareCapabilitiesProvider = FakeHardwareCapabilitiesProvider(),
-    val storage: FakeStorageProvider = FakeStorageProvider(),
-    val systemInfo: FakeSystemInfoProvider = FakeSystemInfoProvider(),
-    val appInfo: FakeAppInfoProvider = FakeAppInfoProvider(),
+public class FakePlatformSenseWiring(
+    public val network: FakeNetworkProvider = FakeNetworkProvider(),
+    public val power: FakePowerProvider = FakePowerProvider(),
+    public val locale: FakeLocaleProvider = FakeLocaleProvider(),
+    public val timezone: FakeTimezoneProvider = FakeTimezoneProvider(),
+    public val appearance: FakeAppearanceProvider = FakeAppearanceProvider(),
+    public val display: FakeDisplayProvider = FakeDisplayProvider(),
+    public val accessibility: FakeAccessibilityProvider = FakeAccessibilityProvider(),
+    public val memory: FakeMemoryProvider = FakeMemoryProvider(),
+    public val device: FakeDeviceProvider = FakeDeviceProvider(),
+    public val biometric: FakeBiometricProvider = FakeBiometricProvider(),
+    public val hardware: FakeHardwareCapabilitiesProvider = FakeHardwareCapabilitiesProvider(),
+    public val storage: FakeStorageProvider = FakeStorageProvider(),
+    public val systemInfo: FakeSystemInfoProvider = FakeSystemInfoProvider(),
+    public val appInfo: FakeAppInfoProvider = FakeAppInfoProvider(),
 ) : PlatformSenseWiring {
 
     override fun networkProvider(): NetworkProvider = network

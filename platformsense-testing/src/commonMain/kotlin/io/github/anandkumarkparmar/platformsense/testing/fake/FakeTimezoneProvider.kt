@@ -10,12 +10,12 @@ import kotlinx.coroutines.flow.asStateFlow
 /**
  * Fake [TimezoneProvider] for tests. Configure [currentValue] to simulate timezone info.
  */
-class FakeTimezoneProvider(initialValue: TimezoneInfo = TimezoneInfo()) : TimezoneProvider {
+public class FakeTimezoneProvider(initialValue: TimezoneInfo = TimezoneInfo()) : TimezoneProvider {
 
     private val _state = MutableStateFlow(initialValue)
-    val state: StateFlow<TimezoneInfo> = _state.asStateFlow()
+    public val state: StateFlow<TimezoneInfo> = _state.asStateFlow()
 
-    var currentValue: TimezoneInfo
+    public var currentValue: TimezoneInfo
         get() = _state.value
         set(value) {
             _state.value = value

@@ -10,7 +10,7 @@ import platform.CoreLocation.CLLocationManager
 import platform.CoreMotion.CMMotionManager
 import platform.UIKit.UIDevice
 
-class IosHardwareCapabilitiesProvider : HardwareCapabilitiesProvider {
+internal class IosHardwareCapabilitiesProvider : HardwareCapabilitiesProvider {
 
     override fun current(): HardwareCapabilities {
         val motionManager = CMMotionManager()

@@ -10,12 +10,12 @@ import kotlinx.coroutines.flow.asStateFlow
 /**
  * Fake [PowerProvider] for tests. Configure [currentValue] to simulate power state (e.g. low battery).
  */
-class FakePowerProvider(initialValue: PowerInfo = PowerInfo()) : PowerProvider {
+public class FakePowerProvider(initialValue: PowerInfo = PowerInfo()) : PowerProvider {
 
     private val _state = MutableStateFlow(initialValue)
-    val state: StateFlow<PowerInfo> = _state.asStateFlow()
+    public val state: StateFlow<PowerInfo> = _state.asStateFlow()
 
-    var currentValue: PowerInfo
+    public var currentValue: PowerInfo
         get() = _state.value
         set(value) {
             _state.value = value

@@ -14,7 +14,7 @@ import platform.posix.uname
 import platform.posix.utsname
 
 @OptIn(ExperimentalForeignApi::class)
-class IosSystemInfoProvider : SystemInfoProvider {
+internal class IosSystemInfoProvider : SystemInfoProvider {
 
     override fun current(): SystemInfo {
         val processInfo = NSProcessInfo.processInfo

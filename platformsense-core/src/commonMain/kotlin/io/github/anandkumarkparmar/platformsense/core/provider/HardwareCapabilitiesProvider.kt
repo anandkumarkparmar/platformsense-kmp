@@ -9,9 +9,16 @@ import kotlinx.coroutines.flow.Flow
  * Hardware capabilities are static for the lifetime of the process.
  * Use [current] for feature gating (e.g. "does this device have NFC?").
  */
-interface HardwareCapabilitiesProvider {
+public interface HardwareCapabilitiesProvider {
 
-    fun current(): HardwareCapabilities
+    /**
+     * Returns the current [HardwareCapabilities] at the time of the call.
+     */
+    public fun current(): HardwareCapabilities
 
-    fun flow(): Flow<HardwareCapabilities>
+    /**
+     * Emits the current [HardwareCapabilities] and then whenever it changes.
+     * Implementations should emit at least once and then on each change.
+     */
+    public fun flow(): Flow<HardwareCapabilities>
 }

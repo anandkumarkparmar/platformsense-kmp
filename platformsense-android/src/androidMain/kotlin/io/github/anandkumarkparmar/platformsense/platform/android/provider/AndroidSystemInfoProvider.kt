@@ -6,7 +6,7 @@ import io.github.anandkumarkparmar.platformsense.core.provider.SystemInfoProvide
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 
-class AndroidSystemInfoProvider : SystemInfoProvider {
+internal class AndroidSystemInfoProvider : SystemInfoProvider {
 
     override fun current(): SystemInfo {
         val securityPatch = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

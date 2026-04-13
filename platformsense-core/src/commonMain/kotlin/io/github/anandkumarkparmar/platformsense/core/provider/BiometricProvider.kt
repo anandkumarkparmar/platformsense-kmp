@@ -10,16 +10,16 @@ import kotlinx.coroutines.flow.Flow
  * domain models only. Use [current] for one-off checks (e.g. show biometric login)
  * and [flow] for UI that reacts when capability changes (e.g. user enrolls a fingerprint).
  */
-interface BiometricProvider {
+public interface BiometricProvider {
 
     /**
      * Returns the current biometric capability at the time of the call.
      */
-    fun current(): BiometricInfo
+    public fun current(): BiometricInfo
 
     /**
      * Emits the current biometric capability and then whenever it changes.
      * Implementations should emit at least once and then on each change.
      */
-    fun flow(): Flow<BiometricInfo>
+    public fun flow(): Flow<BiometricInfo>
 }

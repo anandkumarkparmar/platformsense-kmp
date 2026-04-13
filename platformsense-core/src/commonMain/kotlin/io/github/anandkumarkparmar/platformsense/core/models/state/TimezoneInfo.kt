@@ -10,4 +10,4 @@ package io.github.anandkumarkparmar.platformsense.core.models.state
  * @property displayName The localized display name of the timezone (e.g. "Eastern Standard Time").
  * @property offsetMillis The offset from UTC in milliseconds at the current moment, taking daylight savings into account.
  */
-data class TimezoneInfo(val id: String = "", val displayName: String = "", val offsetMillis: Int = 0)
+public data class TimezoneInfo(val id: String = "", val displayName: String = "", val offsetMillis: Int = 0)

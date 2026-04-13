@@ -10,12 +10,12 @@ import kotlinx.coroutines.flow.asStateFlow
 /**
  * Fake [SystemInfoProvider] for tests. Configure [currentValue] to simulate system info.
  */
-class FakeSystemInfoProvider(initialValue: SystemInfo = SystemInfo()) : SystemInfoProvider {
+public class FakeSystemInfoProvider(initialValue: SystemInfo = SystemInfo()) : SystemInfoProvider {
 
     private val _state = MutableStateFlow(initialValue)
-    val state: StateFlow<SystemInfo> = _state.asStateFlow()
+    public val state: StateFlow<SystemInfo> = _state.asStateFlow()
 
-    var currentValue: SystemInfo
+    public var currentValue: SystemInfo
         get() = _state.value
         set(value) {
             _state.value = value

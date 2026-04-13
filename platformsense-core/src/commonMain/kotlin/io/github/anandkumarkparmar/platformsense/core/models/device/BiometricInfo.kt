@@ -9,7 +9,7 @@ package io.github.anandkumarkparmar.platformsense.core.models.device
  * @property status The current enrollment and availability status of biometrics.
  * @property type The type of expected primary biometric (e.g. FINGERPRINT, FACE), if known.
  */
-data class BiometricInfo(
+public data class BiometricInfo(
     val status: BiometricStatus = BiometricStatus.NOT_SUPPORTED,
     val type: BiometricType = BiometricType.UNKNOWN
 )
@@ -17,7 +17,7 @@ data class BiometricInfo(
 /**
  * Represents the current status of biometric authentication on the device.
  */
-enum class BiometricStatus {
+public enum class BiometricStatus {
     /** Biometric hardware is present and user has enrolled biometric templates. Ready to use. */
     READY,
 
@@ -34,7 +34,7 @@ enum class BiometricStatus {
 /**
  * Represents the primary type of biometric hardware present on the device.
  */
-enum class BiometricType {
+public enum class BiometricType {
     /** Fingerprint or Touch ID sensor. */
     FINGERPRINT,
 

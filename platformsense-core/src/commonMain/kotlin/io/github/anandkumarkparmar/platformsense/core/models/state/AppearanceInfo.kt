@@ -10,4 +10,4 @@ package io.github.anandkumarkparmar.platformsense.core.models.state
  * @property isDynamicColorAvailable True if the device supports dynamic color / Material You theming (Android 12+).
  *                                   Always false on iOS.
  */
-data class AppearanceInfo(val isDarkMode: Boolean = false, val isDynamicColorAvailable: Boolean = false)
+public data class AppearanceInfo(val isDarkMode: Boolean = false, val isDynamicColorAvailable: Boolean = false)

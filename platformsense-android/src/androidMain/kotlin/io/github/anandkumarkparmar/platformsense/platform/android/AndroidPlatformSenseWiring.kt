@@ -43,7 +43,7 @@ import io.github.anandkumarkparmar.platformsense.platform.android.provider.Andro
  *
  * @param context Application or Activity context (held for provider lifetime).
  */
-class AndroidPlatformSenseWiring(private val context: Context) : PlatformSenseWiring {
+public class AndroidPlatformSenseWiring(private val context: Context) : PlatformSenseWiring {
 
     override fun networkProvider(): NetworkProvider = AndroidNetworkProvider(context)
 

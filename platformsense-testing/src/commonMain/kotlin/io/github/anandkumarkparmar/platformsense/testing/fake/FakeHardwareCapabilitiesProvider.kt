@@ -10,13 +10,13 @@ import kotlinx.coroutines.flow.asStateFlow
 /**
  * Fake [HardwareCapabilitiesProvider] for tests. Configure [currentValue] to simulate hardware.
  */
-class FakeHardwareCapabilitiesProvider(initialValue: HardwareCapabilities = HardwareCapabilities()) :
+public class FakeHardwareCapabilitiesProvider(initialValue: HardwareCapabilities = HardwareCapabilities()) :
     HardwareCapabilitiesProvider {
 
     private val _state = MutableStateFlow(initialValue)
-    val state: StateFlow<HardwareCapabilities> = _state.asStateFlow()
+    public val state: StateFlow<HardwareCapabilities> = _state.asStateFlow()
 
-    var currentValue: HardwareCapabilities
+    public var currentValue: HardwareCapabilities
         get() = _state.value
         set(value) {
             _state.value = value

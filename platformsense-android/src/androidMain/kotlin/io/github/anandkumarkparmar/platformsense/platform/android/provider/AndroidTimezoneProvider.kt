@@ -17,7 +17,7 @@ import kotlinx.coroutines.flow.distinctUntilChanged
  *
  * Returns IANA timezone ID. Emits again when the system timezone changes.
  */
-class AndroidTimezoneProvider(private val context: Context) : TimezoneProvider {
+internal class AndroidTimezoneProvider(private val context: Context) : TimezoneProvider {
 
     override fun current(): TimezoneInfo = mapToTimezoneInfo(TimeZone.getDefault())
 
