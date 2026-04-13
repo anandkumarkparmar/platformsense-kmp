@@ -1,6 +1,5 @@
 plugins {
     alias(libs.plugins.kotlin.multiplatform).apply(false)
-    alias(libs.plugins.kotlin.android).apply(false)
     alias(libs.plugins.kotlin.compose).apply(false)
     alias(libs.plugins.android.library).apply(false)
     alias(libs.plugins.android.application).apply(false)
@@ -20,7 +19,6 @@ subprojects {
     apply(plugin = "io.gitlab.arturbosch.detekt")
 
     configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
-        version.set("1.5.0")
         android.set(true)
         outputToConsole.set(true)
         reporters {

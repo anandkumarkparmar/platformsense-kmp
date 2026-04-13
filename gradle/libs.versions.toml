@@ -2,22 +2,22 @@
 # Library version (for publishing / consistency)
 platformsense = "0.1.0"
 # Kotlin & Compose
-kotlin = "2.1.0"
-compose = "1.7.1"
+kotlin = "2.3.20"
+compose = "1.10.3"
 # Android
-agp = "8.8.0"
+agp = "9.1.0"
 compileSdk = "36"
 minSdk = "23"
 minSdkSample = "24"
 targetSdk = "36"
 # Dependencies
-coroutines = "1.8.1"
-activityCompose = "1.9.0"
+coroutines = "1.10.2"
+activityCompose = "1.13.0"
 # JVM
 jvmTarget = "17"
 # Code Quality
-ktlint = "12.1.2"
-detekt = "1.23.7"
+ktlint = "14.2.0"
+detekt = "1.23.8"
 bcv = "0.18.1"
 dokka = "2.2.0"
 
@@ -29,10 +29,9 @@ androidx-activity-compose = { group = "androidx.activity", name = "activity-comp
 
 [plugins]
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 android-application = { id = "com.android.application", version.ref = "agp" }
-android-library = { id = "com.android.library", version.ref = "agp" }
+android-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
 compose = { id = "org.jetbrains.compose", version.ref = "compose" }
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
